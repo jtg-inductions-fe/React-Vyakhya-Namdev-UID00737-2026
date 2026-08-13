@@ -1,4 +1,3 @@
-import type { Theme } from '@mui/material/styles';
 import type {
     TypographyOptions,
     TypographyUtils,
@@ -22,7 +21,7 @@ const typographyUtil: TypographyUtils = {
  * @param theme - Theme object to access the breakpoints.
  * @returns The function returns a TypographyOptions object, which includes various typography settings,
  */
-const typographyStyle = (theme: Theme): TypographyOptions => ({
+const typographyStyle = (): TypographyOptions => ({
     fontFamily: 'Inter',
     htmlFontSize: HTML_FONT_SIZE,
     fontWeightLight: FONT_WEIGHT.LIGHT,
