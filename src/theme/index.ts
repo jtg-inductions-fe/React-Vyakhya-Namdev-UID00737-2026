@@ -5,7 +5,7 @@ import { SCALING_FACTOR } from '@constant';
 /* Customized MUI components themes */
 import { components } from './components';
 /* Customized foundation themes */
-import { breakpoints, mixins, palette, typography } from './foundations';
+import { mixins, palette, typography } from './foundations';
 
 let theme = createTheme({
     breakpoints,
@@ -22,7 +22,7 @@ let theme = createTheme({
 /* Extend the base theme with additional configurations */
 theme = createTheme(theme, {
     typography: {
-        ...typography.typographyStyle(theme),
+        ...typography.typographyStyle(),
     },
 });
 
