@@ -16,4 +16,4 @@ else
 fi
 
 # Run pre-commit script
-npm run pre-commit
+yarn pre-commit

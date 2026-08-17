@@ -23,15 +23,11 @@ export default tseslint.config(
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
-            ecmaVersion: 2020,
             globals: globals.browser,
             /* Specify JSX parsing option for ESLint */
             parserOptions: {
-                project: ['./tsconfig.node.json', './tsconfig.app.json'],
+                project: ['./tsconfig.json'],
                 tsconfigRootDir: import.meta.dirname,
-                ecmaFeatures: {
-                    jsx: true,
-                },
             },
         },
         plugins: {
@@ -62,7 +58,7 @@ export default tseslint.config(
                         ['^\\w'],
                         ['^@mui'],
                         [
-                            '^@(?:|assets|components|constant|layout|routes|theme)',
+                            '^@(assets|components|constant|features|hooks|routes|services|store|theme|types|utils)',
                         ],
                         ['^\\./', '^\\.\\./'],
                     ],

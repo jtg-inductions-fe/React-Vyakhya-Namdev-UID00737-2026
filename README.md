@@ -1,114 +1,186 @@
-## React Base Template
+# GitHub User Search
+
+A React application that allows users to search for GitHub users and view their profile details using the GitHub API.
+
+## Features
+
+- Search for GitHub users by username.
+- View GitHub user details.
+- View user avatar, username, location, followers, following, bio, email, blog, and GitHub profile.
+- Login using a GitHub Personal Access Token (PAT).
+- Protected/guarded routes for authenticated users.
+- Responsive navigation with a mobile-friendly menu.
+- API state management using Redux Toolkit and RTK Query.
+- Form validation and error handling.
+- Reusable and maintainable React components.
+- ESLint and Prettier for code quality and formatting.
+- Husky pre-commit hooks for maintaining code quality.
+
+## Tech Stack
+
+- **React**
+- **TypeScript**
+- **Redux Toolkit**
+- **RTK Query**
+- **Material UI**
+- **React Router**
+- **GitHub REST API**
+- **Vite**
+- **Yarn**
+- **ESLint**
+- **Prettier**
+- **Husky**
+
+## Prerequisites
+
+Before running the project, make sure you have:
+
+- **Node.js:** Version 20+
+- **Yarn:** Version 4.5.0+
 
 ## Getting Started
 
-### Prerequisites
+### 1. Clone the Repository
 
-- **Node.js**: Version 20+. You can download and install it from nodejs.org.
-- **yarn**: Version 4.5.0. If Yarn is not installed, you can follow the instruction below in Installing section
+Clone the repository and navigate to the project directory:
 
-### Installing
+```bash
+git clone <repository-url>
+cd <project-directory>
+```
 
-To set up the project on your local environment, follow these steps:
+### 2. Configure Node.js
 
-1. **Clone the Repository**
+If the required Node.js version is already installed, run:
 
-    First, you need to clone the repository.
+```bash
+nvm use
+```
 
-2. **nvm (Node Version Manager)**: If the required Node version 20+ is already installed and active, you can skip this step else you can use nvm (Node Version Manager). Here's how to use it:
+If it is not installed:
 
-    - **Switch Node Version**: If the required Node version is already installed, run:
+```bash
+nvm install
+```
 
-    ```bash
-    nvm use
-    ```
+If you don't have NVM installed, install it from the official NVM repository.
 
-    - **Install Node Version**: If the required Node version isn’t installed, you can install it by running:
+### 3. Configure Yarn
 
-    ```bash
-    nvm install
-    ```
+If Yarn is not installed:
 
-    > **_Tip:_** If you don't have nvm installed, you can install it by following the instructions on [nvm-sh/nvm](https://github.com/nvm-sh/nvm).
+```bash
+npm install -g yarn
+```
 
-    Alternatively, you can update Node.js directly by downloading the latest version from the official website: nodejs.org.
+Set the project to use Yarn Berry:
 
-    - **Yarn Installation**: If Yarn is not installed, you can install it globally with the following command:
+```bash
+yarn set version berry
+```
 
-    ```bash
-    npm install -g yarn
-    ```
+### 4. Install Dependencies
 
-    - **Switch to correct version**: Switch to yarn latest version
+Install the project dependencies:
 
-    ```bash
-    yarn set version berry
-    ```
+```bash
+yarn
+```
 
-3. **Install the necessary dependencies using yarn**
+## Running the Application
 
-    ```bash
-    yarn
-    ```
+Start the development server:
 
-    > **_NOTE_** : It is recommended to update all packages to their latest versions by running `yarn upgrade --latest`. If the updated packages introduce breaking changes, you may need to adjust the base template accordingly.
+```bash
+yarn dev
+```
 
-4. **Run the Development Server**
+The application will be available at the URL shown in the terminal, typically:
 
-    ```bash
-    yarn dev
-    ```
+```text
+http://localhost:5173
+```
 
-    The app will typically be available at http://localhost:3000, but check the terminal output for the exact URL.
+## Available Scripts
 
-    > **_NOTE:_** : If you want to change the server's port number, you can do so by creating a **.env file** at the root level of the project and update the PORT field (check **.env.template** for reference)
+### Format Code
 
-    ```env
-    PORT=<New Port>
-    ```
+Format the project using Prettier:
 
-5. **Format the Code**
+```bash
+yarn prettier
+```
 
-    ```bash
-    yarn prettier
-    ```
+### Lint Code
 
-6. **Lint the Code**
+Check the project for linting issues:
 
-    ```bash
-    yarn lint
-    ```
+```bash
+yarn lint
+```
 
-7. **To Fix Lint errors**
+### Fix Lint Errors
 
-    ```bash
-    yarn lint:fix
-    ```
+Automatically fix supported linting issues:
 
-8. **Build the Project**
+```bash
+yarn lint:fix
+```
 
-    ```bash
-    yarn build
-    ```
+### Build the Project
 
-    This command will generate the optimized production build in the dist directory.
+Create an optimized production build:
 
-9. **Development Build**
+```bash
+yarn build
+```
 
-    ```bash
-    yarn build:dev
-    ```
+The generated files will be available in the `dist` directory.
 
-    This command will generate the build for development environment in the dist directory
+### Development Build
 
-10. **Preview the build**
+Create a development build:
 
-    ```bash
-    yarn preview
-    ```
+```bash
+yarn build:dev
+```
 
-11. **Setup Husky (If pre-commit hooks are not working)**
+### Preview Production Build
 
-    ```bash
-    yarn postinstall
-    ```
+Preview the production build locally:
+
+```bash
+yarn preview
+```
+
+## Authentication
+
+The application uses a **GitHub Personal Access Token (PAT)** for authentication with the GitHub API.
+
+The token is sent through the `Authorization` header when making authenticated API requests.
+
+## Project Structure
+
+```text
+src/
+├── assets/          # Images and static assets
+├── components/      # Reusable UI components
+├── constant/        # Application constants
+├── features/        # Feature-specific modules
+├── hooks/           # Custom React hooks
+├── routes/          # Application routing and guarded routes
+├── services/        # API services and RTK Query configuration
+├── store/           # Redux store configuration
+├── theme/           # MUI theme, typography, colors and foundations
+├── App.tsx
+└── main.tsx
+```
+
+## Code Quality
+
+The project uses:
+
+- **ESLint** for identifying code-quality and potential JavaScript/TypeScript issues.
+- **Prettier** for consistent code formatting.
+- **Husky** for Git hooks.
+- **lint-staged** for running checks on staged files.
