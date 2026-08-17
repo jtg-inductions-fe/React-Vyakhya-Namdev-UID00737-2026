@@ -23,29 +23,23 @@ export default tseslint.config(
         ],
         files: ['**/*.{ts,tsx}'],
         languageOptions: {
-            ecmaVersion: 2020,
             globals: globals.browser,
             /* Specify JSX parsing option for ESLint */
             parserOptions: {
                 project: ['./tsconfig.node.json', './tsconfig.app.json'],
                 tsconfigRootDir: import.meta.dirname,
-                ecmaFeatures: {
-                    jsx: true,
-                },
             },
         },
         plugins: {
             react: react,
             'react-hooks': reactHooks,
             'react-refresh': reactRefresh,
-            'jsx-a11y': jsxA11y,
             'simple-import-sort': simpleImportSort,
         },
         rules: {
             ...reactHooks.configs.recommended.rules,
             ...react.configs.recommended.rules,
             ...react.configs['jsx-runtime'].rules,
-            ...jsxA11y.configs.recommended.rules,
             'react/react-in-jsx-scope': 'off',
             'no-console': 'error',
             'no-shadow': 'error',
@@ -84,12 +78,6 @@ export default tseslint.config(
                 },
             ],
             'arrow-body-style': ['error', 'as-needed'],
-        },
-        /* Specify React version for eslint-plugin-react */
-        settings: {
-            react: {
-                version: 'detect',
-            },
         },
     },
 );
