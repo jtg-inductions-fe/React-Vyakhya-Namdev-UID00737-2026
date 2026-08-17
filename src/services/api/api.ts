@@ -1,7 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
 import { githubUserSearchResponseMap } from './apiMapper';
 import { GithubSearchApiResponse, GithubUserSearchResult } from './apiTypes';
+
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 /**
  * GitHub API service configured with RTK Query.

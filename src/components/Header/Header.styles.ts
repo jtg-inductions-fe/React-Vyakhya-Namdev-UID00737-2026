@@ -2,6 +2,8 @@ import { typography } from 'theme/foundations';
 
 import { styled } from '@mui/material/styles';
 
+import { COLORS, SHADOWS } from '@constant';
+
 const { pxToRem } = typography.typographyUtil;
 
 /**
@@ -16,7 +18,7 @@ export const HeaderContainer = styled('header')(({ theme }) => ({
     justifyContent: 'space-between',
     padding: `0 ${pxToRem(24)}`,
     backgroundColor: theme.palette.background.paper,
-    boxShadow: `0 ${pxToRem(2)} ${pxToRem(8)} rgba(0, 0, 0, 0.08)`,
+    boxShadow: `0 ${pxToRem(2)} ${pxToRem(8)} ${SHADOWS.HEADER}`,
     boxSizing: 'border-box',
 }));
 
@@ -48,22 +50,32 @@ export const AuthSection = styled('div')({
 export const AuthButton = styled('button')<{
     variant?: 'signup';
 }>(({ theme, variant }) => ({
-    ...theme.typography.body1,
+    ...theme.typography.subtitle1,
     border: 'none',
     padding: `${pxToRem(8)} ${pxToRem(15)}`,
     borderRadius: pxToRem(8),
     cursor: 'pointer',
-
     backgroundColor:
         variant === 'signup' ? theme.palette.text.primary : 'transparent',
-
     color:
         variant === 'signup'
             ? theme.palette.background.paper
             : theme.palette.text.primary,
 
     '&:hover': {
-        opacity: 0.85,
+        backgroundColor:
+            variant === 'signup'
+                ? COLORS.INTERACTION.HOVER_DARK
+                : COLORS.INTERACTION.HOVER,
+    },
+
+    '&:active': {
+        backgroundColor: COLORS.INTERACTION.ACTIVE,
+    },
+
+    '&:focus-visible': {
+        outline: `2px solid ${COLORS.INTERACTION.FOCUS}`,
+        outlineOffset: pxToRem(2),
     },
 }));
 

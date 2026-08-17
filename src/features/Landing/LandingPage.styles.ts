@@ -13,6 +13,7 @@ export const HeroContainer = styled('section')({
     display: 'flex',
     justifyContent: 'center',
     overflow: 'hidden',
+    cursor: 'pointer',
 });
 
 /**

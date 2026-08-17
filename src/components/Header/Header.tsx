@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import logo from '@assets/image/logo.png';
 import UserSearch from '@features/userSearch/UserSearch';
@@ -25,7 +26,9 @@ const Header = () => {
         <HeaderContainer>
             <SearchSection>
                 <LogoContainer>
-                    <LogoImage src={logo} alt="Github-logo" />
+                    <Link to="/">
+                        <LogoImage src={logo} alt="Github-logo" />
+                    </Link>
                 </LogoContainer>
                 <UserSearch />
             </SearchSection>
