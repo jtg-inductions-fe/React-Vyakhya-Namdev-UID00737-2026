@@ -1,5 +1,12 @@
 import type { Theme } from '@mui/material/styles';
+<<<<<<< HEAD
 import type { TypographyOptions } from '@mui/material/styles/createTypography';
+=======
+import type {
+    TypographyOptions,
+    TypographyUtils,
+} from '@mui/material/styles/createTypography';
+>>>>>>> 7ca3181 ([VN_A4_01]: Search & Header component added)
 
 import { HTML_FONT_SIZE } from '@constant';
 import { FONT_WEIGHT } from '@constant';
