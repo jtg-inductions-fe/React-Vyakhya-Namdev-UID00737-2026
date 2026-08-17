@@ -16,4 +16,13 @@ export const palette: PaletteOptions = {
         500: COLORS.GREY.BORDER,
         300: COLORS.GREY.MUTED,
     },
+    success: {
+        main: COLORS.STATUS.SUCCESS,
+    },
+    error: {
+        main: COLORS.STATUS.ERROR,
+    },
+    warning: {
+        main: COLORS.STATUS.WARNING,
+    },
 };

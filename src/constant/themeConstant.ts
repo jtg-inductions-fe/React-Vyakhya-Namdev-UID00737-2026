@@ -15,6 +15,17 @@ export const COLORS = {
         BORDER: '#949499',
         MUTED: '#E1E2E3',
     },
+    STATUS: {
+        SUCCESS: '#1A7F37',
+        ERROR: '#CF222E',
+        WARNING: '#9A6700',
+    },
+    INTERACTION: {
+        HOVER: '#F6F8FA',
+        ACTIVE: '#EAEEF2',
+        FOCUS: '#57606A',
+        DISABLED: '#8C959F',
+    },
 };
 
 /**
@@ -30,7 +41,7 @@ export const HTML_FONT_SIZE = 16;
 export const SCALING_FACTOR = 4;
 
 /**
- * Fon weights used throught the application
+ * Font weights used throught the application
  * @constant
  */
 export const FONT_WEIGHT = {
