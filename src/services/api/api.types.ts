@@ -7,11 +7,18 @@ export interface IGithubUser {
     avatarUrl: string;
     profileUrl: string;
     bio: string | null;
+    location: string | null;
+    followers: number;
+    following: number;
 }
 
 /**
+<<<<<<< HEAD
  * Uses GitHub's original field names and is mapped to `IGithubUser`
  * before being consumed by the application.
+=======
+ * Raw GitHub user response.
+>>>>>>> 3d1e06e ([VN_A4_02]: Login Form and PAT Authentication added)
  */
 export interface IGithubUserApiResponse {
     id: number;
@@ -19,6 +26,9 @@ export interface IGithubUserApiResponse {
     avatar_url: string;
     html_url: string;
     bio?: string | null;
+    location?: string | null;
+    followers: number;
+    following: number;
 }
 
 /**

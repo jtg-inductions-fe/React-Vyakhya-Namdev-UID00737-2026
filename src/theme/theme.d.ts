@@ -16,6 +16,7 @@ declare module '@mui/material/styles' {
 
         customShadows: {
             header: string;
+            form: string;
         };
     }
 

@@ -70,4 +70,5 @@ export const BREAKPOINTS = {
 
 export const SHADOWS = {
     HEADER: '0 2px 8px rgba(0, 0, 0, 0.08)',
+    FORM: '0 4px 20px rgba(0, 0, 0, 0.15)',
 };

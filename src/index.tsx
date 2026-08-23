@@ -3,10 +3,10 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import { RouterProvider } from 'react-router-dom';
-import { store } from 'store/store';
 
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
+import { store } from '@store/index';
 import { theme } from '@theme';
 
 import { router } from './routes';

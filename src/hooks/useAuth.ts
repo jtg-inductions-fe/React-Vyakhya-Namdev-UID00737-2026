@@ -4,10 +4,17 @@
  * @returns {object} Authentication state containing the user
  * and `isAuthenticated` flag.
  */
-export const useAuth = () => {
-    // TODO: Replace this stub with the actual authentication state.
-    const user = null;
-    const isAuthenticated = user !== null;
+import { useCallback, useState } from 'react';
 
-    return { user, isAuthenticated };
+import { authStorage } from 'services/auth/authStorage';
+
+export const useAuth = () => {
+    const [user, setUser] = useState(() => authStorage.getUser());
+    const isAuthenticated = user !== null;
+    const logout = useCallback(() => {
+        authStorage.clearAuth();
+        setUser(null);
+    }, []);
+
+    return { user, isAuthenticated, logout };
 };

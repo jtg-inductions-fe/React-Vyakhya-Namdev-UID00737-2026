@@ -1,4 +1,11 @@
-import { Box, Button, buttonClasses } from '@mui/material';
+import {
+    Box,
+    Button,
+    buttonClasses,
+    Menu,
+    MenuItem,
+    paperClasses,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 /**
@@ -53,5 +60,45 @@ export const AuthButton = styled(Button)(({ theme }) => ({
     '&:focus-visible': {
         outline: `2px solid ${theme.palette.interaction.focus}`,
         outlineOffset: theme.typography.pxToRem(2),
+    },
+}));
+
+/**
+ * Styling the ProfileButton
+ */
+export const ProfileButton = styled('button')(({ theme }) => ({
+    border: 'none',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'transparent',
+    cursor: 'pointer',
+    width: theme.spacing(12),
+    height: theme.spacing(12),
+    padding: 0,
+    margin: 0,
+    borderRadius: '50%',
+    '&:hover': {
+        backgroundColor: theme.palette.interaction.hover,
+    },
+
+    '&:focus-visible': {
+        outline: `2px solid ${theme.palette.interaction.focus}`,
+        outlineOffset: theme.spacing(2),
+    },
+}));
+
+/** Styled Menu Items in flexed-row direction along with icons */
+export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    gap: theme.spacing(2),
+}));
+
+/** Kept ProfileMenu at distance from Profile Button */
+export const ProfileMenu = styled(Menu)(({ theme }) => ({
+    [`& .${paperClasses.root}`]: {
+        marginTop: theme.spacing(2),
+        minWidth: theme.spacing(15),
     },
 }));

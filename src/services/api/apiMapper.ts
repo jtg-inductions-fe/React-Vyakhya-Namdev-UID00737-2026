@@ -18,6 +18,9 @@ export const IGithubUserMap = (user: IGithubUserApiResponse): IGithubUser => ({
     avatarUrl: user.avatar_url,
     profileUrl: user.html_url,
     bio: user.bio ?? null,
+    location: user.location ?? null,
+    followers: user.followers,
+    following: user.following,
 });
 
 /**
