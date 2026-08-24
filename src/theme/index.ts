@@ -1,11 +1,10 @@
 import { createTheme } from '@mui/material/styles';
 
-import { SCALING_FACTOR } from '@constant';
-
 /* Customized MUI components themes */
 import { components } from './components';
 /* Customized foundation themes */
-import { mixins, palette, typography, breakpoints } from './foundations';
+import { breakpoints, mixins, palette, typography } from './foundations';
+import { SCALING_FACTOR } from '../constants';
 
 let theme = createTheme({
     breakpoints,

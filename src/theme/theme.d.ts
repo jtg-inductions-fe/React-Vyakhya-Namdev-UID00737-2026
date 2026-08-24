@@ -3,3 +3,33 @@ export declare module '@mui/material/styles/createMixins' {
         lineClamp: (lines: number) => CSSProperties;
     }
 }
+
+declare module '@mui/material/styles' {
+    interface Palette {
+        interaction: {
+            hover: string;
+            hoverDark: string;
+            active: string;
+            focus: string;
+            disabled: string;
+        };
+
+        customShadows: {
+            header: string;
+        };
+    }
+
+    interface PaletteOptions {
+        interaction?: {
+            hover?: string;
+            hoverDark?: string;
+            active?: string;
+            focus?: string;
+            disabled?: string;
+        };
+
+        customShadows?: {
+            header?: string;
+        };
+    }
+}

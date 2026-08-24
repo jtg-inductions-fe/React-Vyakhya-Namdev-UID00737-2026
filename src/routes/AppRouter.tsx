@@ -1,8 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import Login from '@features/auth/Login';
-import LandingPage from '@features/Landing/LandingPage';
-import Profile from '@features/profile/Profile';
+import { MainLayout } from '@layouts/MainLayout';
+
+import { ErrorPage } from '@components/ErrorPage';
+import { Login } from '@features/auth/Login';
+import { LandingPage } from '@features/landing';
+import { Profile } from '@features/profile';
 
 /**
  * Application route configuration.
@@ -10,14 +13,21 @@ import Profile from '@features/profile/Profile';
 export const router = createBrowserRouter([
     {
         path: '/',
-        element: <LandingPage />,
-    },
-    {
-        path: '/login',
-        element: <Login />,
-    },
-    {
-        path: '/profile',
-        element: <Profile />,
+        element: <MainLayout />,
+        errorElement: <ErrorPage />,
+        children: [
+            {
+                index: true,
+                element: <LandingPage />,
+            },
+            {
+                path: 'login',
+                element: <Login />,
+            },
+            {
+                path: 'profile/:username',
+                element: <Profile />,
+            },
+        ],
     },
 ]);

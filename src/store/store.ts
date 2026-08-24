@@ -1,6 +1,6 @@
-import { githubApi } from 'services/api/api';
-
 import { configureStore } from '@reduxjs/toolkit';
+
+import { githubApi } from 'services/api/api';
 
 export const store = configureStore({
     reducer: {

@@ -1,7 +1,7 @@
-import { githubUserSearchResponseMap } from './apiMapper';
-import { GithubSearchApiResponse, GithubUserSearchResult } from './apiTypes';
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+
+import { IGithubSearchApiResponse, IGithubUserSearchResult } from './api.types';
+import { IGithubUserSearchResponseMap } from './apiMapper';
 
 /**
  * GitHub API service configured with RTK Query.
@@ -20,7 +20,7 @@ export const githubApi = createApi({
          * @param searchQuery - Username or search term entered by the user.
          * @returns Mapped GitHub user search results.
          */
-        searchUsers: builder.query<GithubUserSearchResult, string>({
+        searchUsers: builder.query<IGithubUserSearchResult, string>({
             query: (searchQuery) => ({
                 url: '/search/users',
                 params: {
@@ -36,8 +36,8 @@ export const githubApi = createApi({
              * Maps the GitHub API response to the application's
              * internal user search result structure.
              */
-            transformResponse: (response: GithubSearchApiResponse) =>
-                githubUserSearchResponseMap(response),
+            transformResponse: (response: IGithubSearchApiResponse) =>
+                IGithubUserSearchResponseMap(response),
         }),
     }),
 });

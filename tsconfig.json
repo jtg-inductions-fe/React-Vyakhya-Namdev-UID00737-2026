@@ -27,7 +27,11 @@
             "@constant": ["constant/index"],
             "@theme": ["theme/index"],
             "@features/*": ["features/*"],
-            "@hooks/*": ["hooks/*"]
+            "@store/*": ["store/*"],
+            "@hooks/*": ["hooks/*"],
+            "@components/*": ["components/*"],
+            "@services/*": ["services/*"],
+            "@layouts/*": ["layouts/*"]
         }
     },
     "include": ["src", "vite.config.ts"]

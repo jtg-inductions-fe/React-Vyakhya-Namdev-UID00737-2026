@@ -1,7 +1,7 @@
 /** Minimum number of characters required before triggering a search.
  * @constant
  */
-export const MIN_SEARCH_LENGTH = 3;
+export const MIN_QUERY_LENGTH = 1;
 
 /** Delay in before triggering the search after user input.
  * @constant

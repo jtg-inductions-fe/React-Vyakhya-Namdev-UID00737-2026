@@ -1,31 +1,26 @@
 import CloseIcon from '@mui/icons-material/Close';
-import { Avatar, Box, IconButton, Typography } from '@mui/material';
+import { Box, IconButton, Typography } from '@mui/material';
 
-import {
-    avatarStyles,
-    bioStyles,
-    removeButtonStyles,
-    userInfoContainerStyles,
-    userInfoDetailsStyles,
-} from './UserInfoCard.styles';
-import { UserSuggestionProps } from './UserInfoCard.types';
+import { UserAvatar } from './userInfoCard.styles';
+import { IUserSuggestion } from './userInfoCard.types';
 
 /**
  * Displays GitHub user information in a compact card.
  * Optionally displays the user's bio and a remove action
  * when rendered as a suggestion.
  */
-const UserInfo = ({
+export const UserInfo = ({
     user,
     showSuggestionActions = false,
-}: UserSuggestionProps) => (
-    <Box sx={userInfoContainerStyles}>
-        <Box sx={userInfoDetailsStyles}>
-            <Avatar
-                src={user.avatarUrl}
-                alt={user.username}
-                sx={avatarStyles}
-            />
+}: IUserSuggestion) => (
+    <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        width="100%"
+    >
+        <Box display="flex" alignItems="center">
+            <UserAvatar src={user.avatarUrl} alt={user.username} />
             <Box>
                 <Typography variant="subtitle1">{user.username}</Typography>
 
@@ -33,7 +28,7 @@ const UserInfo = ({
                     <Typography
                         variant="caption"
                         color="text.secondary"
-                        sx={bioStyles}
+                        display="block"
                     >
                         {user.bio}
                     </Typography>
@@ -41,17 +36,10 @@ const UserInfo = ({
             </Box>
         </Box>
 
-        {/* Show suggestion-specific actions only when enabled. */}
         {showSuggestionActions && (
-            <IconButton
-                size="small"
-                aria-label={`Remove ${user.username}`}
-                sx={removeButtonStyles}
-            >
+            <IconButton size="small" aria-label={`Remove ${user.username}`}>
                 <CloseIcon fontSize="small" />
             </IconButton>
         )}
     </Box>
 );
-
-export default UserInfo;

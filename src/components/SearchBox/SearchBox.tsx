@@ -1,30 +1,40 @@
 import { useState } from 'react';
 
-import { Loader } from 'components/Loader';
-import { UserInfo } from 'components/UserInfoCard';
-import { MIN_SEARCH_LENGTH } from 'constant/searchBoxConstants';
-import { GithubUser } from 'services/api/apiTypes';
-
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
-import { Autocomplete, IconButton, InputAdornment } from '@mui/material';
+import {
+    Autocomplete,
+    IconButton,
+    InputAdornment,
+    ListItem,
+    TextField,
+} from '@mui/material';
 
-import { SearchBoxWrapper, StyledSearchInput } from './SearchBox.styles';
-import { SearchBoxProps } from './SearchBox.types';
+import { Loader } from '@components/Loader';
+import { MIN_QUERY_LENGTH } from '@features/user-search/searchBox.constants';
+
+import { SearchBoxPopper, SearchBoxWrapper } from './searchBox.styles';
+import { ISearchBoxProps } from './searchBox.types';
 
 /**
- * Search input component for finding GitHub users.
- * Handles user input, autocomplete suggestions, loading/error states,
- * clearing the search, and selecting a suggested user.
+ * Generic reusable search box with autocomplete functionality.
+ *
+ * The component is independent of the type of data being searched.
+ * The parent component provides:
+ * - how to get the option label
+ * - how to render each suggestion
+ * - what to do when a suggestion is selected
  */
-const SearchBox = ({
+export const SearchBox = <T,>({
     value = '',
     suggestions = [],
     loading = false,
     error = false,
     onSearch,
     onSuggestionSelect,
-}: SearchBoxProps) => {
+    getOptionLabel,
+    renderOption,
+}: ISearchBoxProps<T>) => {
     const [inputValue, setInputValue] = useState(value);
     const [open, setOpen] = useState(false);
 
@@ -44,7 +54,7 @@ const SearchBox = ({
         setInputValue(newInputValue);
         onSearch(newInputValue);
 
-        if (newInputValue.trim().length >= MIN_SEARCH_LENGTH) {
+        if (newInputValue.trim().length >= MIN_QUERY_LENGTH) {
             setOpen(true);
         } else {
             setOpen(false);
@@ -56,7 +66,7 @@ const SearchBox = ({
      * enough characters to perform a search.
      */
     const handleFocus = () => {
-        if (inputValue.trim().length >= MIN_SEARCH_LENGTH) {
+        if (inputValue.trim().length >= MIN_QUERY_LENGTH) {
             setOpen(true);
         }
     };
@@ -77,46 +87,46 @@ const SearchBox = ({
     };
 
     /**
-     * Handles selection of a GitHub user from the suggestions.
+     * Handles selection of an item from the suggestions.
      */
     const handleSuggestionSelect = (
         _event: React.SyntheticEvent,
-        user: GithubUser | null,
+        item: T | null,
     ) => {
-        if (user) {
-            onSuggestionSelect?.(user);
+        if (item) {
+            onSuggestionSelect?.(item);
         }
     };
 
     return (
         <SearchBoxWrapper>
-            <Autocomplete<GithubUser>
+            <Autocomplete<T>
+                slots={{ popper: SearchBoxPopper }}
                 popupIcon={null}
                 fullWidth
                 options={suggestions}
                 value={null}
                 inputValue={inputValue}
                 open={open}
+                onClose={() => setOpen(false)}
                 loading={loading}
                 clearOnBlur={false}
                 filterOptions={(options) => options}
-                getOptionLabel={(option) => option.username}
+                getOptionLabel={getOptionLabel}
                 onInputChange={handleInputChange}
                 onChange={handleSuggestionSelect}
                 noOptionsText={
-                    inputValue.trim().length >= MIN_SEARCH_LENGTH
-                        ? 'No User Found!'
+                    inputValue.trim().length >= MIN_QUERY_LENGTH
+                        ? 'No Result Found!'
                         : ''
                 }
-                renderOption={(props, user) => (
-                    <li {...props} key={user.id}>
-                        <UserInfo user={user} />
-                    </li>
+                renderOption={(props, item) => (
+                    <ListItem {...props}>{renderOption(item)}</ListItem>
                 )}
                 renderInput={(params) => (
-                    <StyledSearchInput
+                    <TextField
                         {...params}
-                        placeholder="Search GitHub Users"
+                        placeholder="Search"
                         error={error}
                         onFocus={handleFocus}
                         onBlur={handleBlur}
@@ -141,7 +151,9 @@ const SearchBox = ({
                                             <CloseIcon fontSize="small" />
                                         </IconButton>
                                     )}
+
                                     {loading && <Loader />}
+
                                     {params.InputProps.endAdornment}
                                 </>
                             ),
@@ -152,5 +164,3 @@ const SearchBox = ({
         </SearchBoxWrapper>
     );
 };
-
-export default SearchBox;

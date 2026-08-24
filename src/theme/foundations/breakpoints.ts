@@ -1,6 +1,6 @@
 import { BreakpointsOptions } from '@mui/material/styles';
 
-import { BREAKPOINTS } from '@constant';
+import { BREAKPOINTS } from '../../constants';
 
 /**
  * Responsive breakpoint configuration for the application.

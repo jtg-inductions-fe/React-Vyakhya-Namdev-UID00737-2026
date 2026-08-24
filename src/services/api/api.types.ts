@@ -1,7 +1,7 @@
 /**
  * Application-level GitHub user model.
  */
-export interface GithubUser {
+export interface IGithubUser {
     id: number;
     username: string;
     avatarUrl: string;
@@ -10,10 +10,10 @@ export interface GithubUser {
 }
 
 /**
- * Uses GitHub's original field names and is mapped to `GithubUser`
+ * Uses GitHub's original field names and is mapped to `IGithubUser`
  * before being consumed by the application.
  */
-export interface GithubUserApiResponse {
+export interface IGithubUserApiResponse {
     id: number;
     login: string;
     avatar_url: string;
@@ -24,17 +24,17 @@ export interface GithubUserApiResponse {
 /**
  * Raw response returned by the GitHub user search API.
  */
-export interface GithubSearchApiResponse {
+export interface IGithubSearchApiResponse {
     total_count: number;
     incomplete_results: boolean;
-    items: GithubUserApiResponse[];
+    items: IGithubUserApiResponse[];
 }
 
 /**
  * Represents the mapped structure returned by the RTK Query
  * search endpoint.
  */
-export interface GithubUserSearchResult {
+export interface IGithubUserSearchResult {
     totalCount: number;
-    users: GithubUser[];
+    users: IGithubUser[];
 }

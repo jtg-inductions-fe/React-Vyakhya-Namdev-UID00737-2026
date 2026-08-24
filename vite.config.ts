@@ -1,4 +1,4 @@
-import type { UserConfig } from 'vite';
+import type { PluginOption, UserConfig } from 'vite';
 import { defineConfig, loadEnv } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -41,7 +41,7 @@ export default defineConfig(({ mode }): UserConfig => {
         return {
             ...commonConfig,
             plugins: [
-                commonConfig.plugins,
+                ...(commonConfig.plugins as PluginOption[]),
                 /* Image optimization for production build */
                 ViteImageOptimizer({
                     test: /\.(jpe?g|webp|png)$/i,

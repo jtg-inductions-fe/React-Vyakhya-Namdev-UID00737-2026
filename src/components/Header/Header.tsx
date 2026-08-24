@@ -1,60 +1,58 @@
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import logo from '@assets/image/logo.png';
-import UserSearch from '@features/userSearch/UserSearch';
-import useAuth from '@hooks/useAuth';
+import { Box } from '@mui/material';
 
-import {
-    AuthButton,
-    AuthSection,
-    HeaderContainer,
-    LogoContainer,
-    LogoImage,
-    SearchSection,
-} from './Header.styles';
+import { UserSearch } from '@features/user-search';
+import { useAuth } from '@hooks/useAuth';
+
+import { AuthButton, HeaderContainer } from './header.styles';
+import { HeaderProps } from './header.types';
 
 /**
  * Header containing the GitHub logo, user search,
  * and authentication actions based on the user's login state.
  */
-const Header = () => {
+export const Header = ({ logo, logoAlt }: HeaderProps) => {
     const navigate = useNavigate();
     const { isAuthenticated } = useAuth();
 
+    const handleLogin = () => {
+        void navigate('/login');
+    };
+
     return (
         <HeaderContainer>
-            <SearchSection>
-                <LogoContainer>
-                    <Link to="/">
-                        <LogoImage src={logo} alt="Github-logo" />
-                    </Link>
-                </LogoContainer>
-                <UserSearch />
-            </SearchSection>
+            <Box display="flex" alignItems="center" gap={5} flex={1}>
+                <Link to="/">
+                    <Box
+                        component="img"
+                        src={logo}
+                        alt={logoAlt}
+                        width={40}
+                        height={40}
+                    />
+                </Link>
 
-            <AuthSection>
+                <UserSearch />
+            </Box>
+
+            <Box display="flex" alignItems="center" gap={2} ml={3}>
                 {isAuthenticated ? (
                     // Show user Profile button for authenticated users.
                     <AuthButton>Profile Button</AuthButton>
                 ) : (
-                    // Show login and signup buttins for unauthenticated users.
+                    // Show login and signup buttons for unauthenticated users.
                     <>
-                        <AuthButton onClick={() => void navigate('/login')}>
+                        <AuthButton variant="text" onClick={handleLogin}>
                             Log in
                         </AuthButton>
 
-                        <AuthButton
-                            variant="signup"
-                            onClick={() => void navigate('/login')}
-                        >
+                        <AuthButton variant="contained" onClick={handleLogin}>
                             Sign up
                         </AuthButton>
                     </>
                 )}
-            </AuthSection>
+            </Box>
         </HeaderContainer>
     );
 };
-
-export default Header;

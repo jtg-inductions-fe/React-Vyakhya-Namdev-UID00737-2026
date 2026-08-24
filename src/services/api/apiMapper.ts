@@ -1,9 +1,9 @@
 import {
-    GithubSearchApiResponse,
-    GithubUser,
-    GithubUserApiResponse,
-    GithubUserSearchResult,
-} from './apiTypes';
+    IGithubSearchApiResponse,
+    IGithubUser,
+    IGithubUserApiResponse,
+    IGithubUserSearchResult,
+} from './api.types';
 
 /**
  * Maps a raw GitHub user API response to the application's
@@ -12,7 +12,7 @@ import {
  * @param user - user object returned by the GitHub API.
  * @returns Normalized user object used by the application.
  */
-export const githubUserMap = (user: GithubUserApiResponse): GithubUser => ({
+export const IGithubUserMap = (user: IGithubUserApiResponse): IGithubUser => ({
     id: user.id,
     username: user.login,
     avatarUrl: user.avatar_url,
@@ -27,9 +27,9 @@ export const githubUserMap = (user: GithubUserApiResponse): GithubUser => ({
  * @param response - response returned by the GitHub search API.
  * @returns Normalized search result containing the total count and users.
  */
-export const githubUserSearchResponseMap = (
-    response: GithubSearchApiResponse,
-): GithubUserSearchResult => ({
+export const IGithubUserSearchResponseMap = (
+    response: IGithubSearchApiResponse,
+): IGithubUserSearchResult => ({
     totalCount: response.total_count,
-    users: response.items.map(githubUserMap),
+    users: response.items.map(IGithubUserMap),
 });
