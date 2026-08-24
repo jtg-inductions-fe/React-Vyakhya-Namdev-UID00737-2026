@@ -2,12 +2,15 @@ import { configureStore } from '@reduxjs/toolkit';
 
 import { authReducer } from '@features/auth/auth.slice';
 import { githubApi } from '@services/api';
+import { profileReducer } from '@features/profile/profile.slice';
 
 export const store = configureStore({
     reducer: {
         auth: authReducer,
+        profile: profileReducer,
         [githubApi.reducerPath]: githubApi.reducer,
     },
+
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware().concat(githubApi.middleware),
 });

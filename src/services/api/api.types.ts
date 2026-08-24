@@ -51,3 +51,10 @@ export interface IGithubUserSearchResult {
     totalCount: number;
     users: IGithubUser[];
 }
+
+/** Designing Props for pagination of followers */
+export interface IFollowersQueryParams {
+    username: string;
+    page: number;
+    perPage: number;
+}

@@ -1,6 +1,7 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
 
 import {
+    IFollowersQueryParams,
     IGithubSearchApiResponse,
     IGithubUser,
     IGithubUserApiResponse,
@@ -76,6 +77,52 @@ export const githubApi = createApi({
                 response: IGithubUserApiResponse,
             ): IGithubUser => IGithubUserMap(response),
         }),
+
+        /**
+         * Follows the GitHub user with the given username.
+         */
+        followUser: builder.mutation<void, string>({
+            query: (username) => ({
+                url: `/user/following/${username}`,
+                method: 'PUT',
+            }),
+        }),
+
+        /**
+         * Check for if user already follows the another user profile
+         */
+        checkFollowing: builder.query<boolean, string>({
+            query: (username) => ({
+                url: `/user/following/${username}`,
+                method: 'GET',
+            }),
+            transformResponse: () => true,
+            transformErrorResponse: (response) => {
+                if (response.status === 404) {
+                    return {
+                        status: 404,
+                        data: false,
+                    };
+                }
+
+                return response;
+            },
+        }),
+
+        /**
+         * checking the followers of user
+         */
+        getFollowers: builder.query<IGithubUser[], IFollowersQueryParams>({
+            query: ({ username, page, perPage }) => ({
+                url: `/users/${username}/followers`,
+                params: {
+                    page,
+                    per_page: perPage,
+                },
+            }),
+            transformResponse: (response: IGithubUserApiResponse[]) =>
+                response.map((user) => IGithubUserMap(user)),
+        }),
     }),
 });
 
@@ -87,4 +134,7 @@ export const {
     useGetAuthenticatedUserQuery,
     useLazyGetAuthenticatedUserQuery,
     useGetUserQuery,
+    useFollowUserMutation,
+    useCheckFollowingQuery,
+    useGetFollowersQuery,
 } = githubApi;

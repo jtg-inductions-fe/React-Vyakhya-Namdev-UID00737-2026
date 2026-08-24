@@ -28,7 +28,7 @@ export const ProfileActionButton = styled(Button)(({ theme }) => ({
 }));
 
 /** Styles the edit button using the theme colors. */
-export const EditButton = styled(Button)(({ theme }) => ({
+export const StyledButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(1),
     color: theme.palette.text.secondary,
     borderColor: theme.palette.text.secondary,

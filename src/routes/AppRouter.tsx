@@ -6,6 +6,7 @@ import { ErrorPage } from '@components/ErrorPage';
 import { LoginForm } from '@features/auth';
 import { LandingPage } from '@features/landing';
 import { Profile } from '@features/profile';
+import { Followers } from '@features/profile/components/Followers/Followers';
 
 /**
  * Application route configuration.
@@ -23,6 +24,10 @@ export const router = createBrowserRouter([
             {
                 path: 'profile/:username',
                 element: <Profile />,
+            },
+            {
+                path: '/profile/:username/followers',
+                element: <Followers />,
             },
         ],
     },
