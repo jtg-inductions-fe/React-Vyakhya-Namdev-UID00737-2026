@@ -3,6 +3,7 @@
  */
 export interface IGithubUser {
     id: number;
+    name: string;
     username: string;
     avatarUrl: string;
     profileUrl: string;
@@ -10,6 +11,9 @@ export interface IGithubUser {
     location: string | null;
     followers: number;
     following: number;
+    githubUrl: string;
+    blog: string | null;
+    email: string | null;
 }
 
 /**
@@ -17,6 +21,7 @@ export interface IGithubUser {
  */
 export interface IGithubUserApiResponse {
     id: number;
+    name: string;
     login: string;
     avatar_url: string;
     html_url: string;
@@ -24,6 +29,9 @@ export interface IGithubUserApiResponse {
     location?: string | null;
     followers: number;
     following: number;
+    githubUrl: string;
+    blog: string | null;
+    email: string | null;
 }
 
 /**

@@ -6,10 +6,14 @@ export const COLORS = {
     TEXT: {
         PRIMARY: '#24292F',
         SECONDARY: '#57606A',
+        TERTIARY: '#0f3867',
+        BUTTON: '#0a3616',
     },
     BACKGROUND: {
         DEFAULT: '#FAFAFA',
         CARD: '#FFFFFF',
+        BUTTON_PRIMARY: '#87c599',
+        BUTTON_SECONDARY: '#849fbf',
     },
     GREY: {
         BORDER: '#949499',
@@ -23,6 +27,8 @@ export const COLORS = {
     INTERACTION: {
         HOVER: '#eff2f4',
         HOVER_DARK: '#45494E',
+        HOVER_BUTTON: '#4daa68',
+        HOVER_FOLLOW_BUTTON: '#5c81aa',
         ACTIVE: '#EAEEF2',
         FOCUS: '#57606A',
         DISABLED: '#8C959F',
@@ -71,4 +77,5 @@ export const BREAKPOINTS = {
 export const SHADOWS = {
     HEADER: '0 2px 8px rgba(0, 0, 0, 0.08)',
     FORM: '0 4px 20px rgba(0, 0, 0, 0.15)',
+    AVATAR: '0 0 0 4px rgba(150, 138, 138, 0.15)',
 };

@@ -9,6 +9,8 @@ declare module '@mui/material/styles' {
         interaction: {
             hover: string;
             hoverDark: string;
+            hover_button: string;
+            hover_follow_button: string;
             active: string;
             focus: string;
             disabled: string;
@@ -17,6 +19,14 @@ declare module '@mui/material/styles' {
         customShadows: {
             header: string;
             form: string;
+            avatar: string;
+        };
+
+        customColors: {
+            button_text_primary: string;
+            button_text_secondary: string;
+            button_primary: string;
+            button_secondary: string;
         };
     }
 
@@ -24,6 +34,8 @@ declare module '@mui/material/styles' {
         interaction?: {
             hover?: string;
             hoverDark?: string;
+            hover_button?: string;
+            hover_follow_button?: string;
             active?: string;
             focus?: string;
             disabled?: string;
@@ -31,6 +43,15 @@ declare module '@mui/material/styles' {
 
         customShadows?: {
             header?: string;
+            form?: string;
+            avatar?: string;
+        };
+
+        customColors: {
+            button_text_primary?: string;
+            button_text_secondary?: string;
+            button_primary?: string;
+            button_secondary?: string;
         };
     }
 }

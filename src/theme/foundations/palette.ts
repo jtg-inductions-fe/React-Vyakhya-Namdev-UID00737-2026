@@ -7,6 +7,7 @@ export const palette: PaletteOptions & {
     customShadows: {
         header: typeof SHADOWS.HEADER;
         form: typeof SHADOWS.FORM;
+        avatar: typeof SHADOWS.AVATAR;
     };
 } = {
     text: {
@@ -33,6 +34,8 @@ export const palette: PaletteOptions & {
     interaction: {
         hover: COLORS.INTERACTION.HOVER,
         hoverDark: COLORS.INTERACTION.HOVER_DARK,
+        hover_button: COLORS.INTERACTION.HOVER_BUTTON,
+        hover_follow_button: COLORS.INTERACTION.HOVER_FOLLOW_BUTTON,
         active: COLORS.INTERACTION.ACTIVE,
         focus: COLORS.INTERACTION.FOCUS,
         disabled: COLORS.INTERACTION.DISABLED,
@@ -40,5 +43,12 @@ export const palette: PaletteOptions & {
     customShadows: {
         header: SHADOWS.HEADER,
         form: SHADOWS.FORM,
+        avatar: SHADOWS.AVATAR,
+    },
+    customColors: {
+        button_text_primary: COLORS.TEXT.BUTTON,
+        button_text_secondary: COLORS.TEXT.TERTIARY,
+        button_primary: COLORS.BACKGROUND.BUTTON_PRIMARY,
+        button_secondary: COLORS.BACKGROUND.BUTTON_SECONDARY,
     },
 };

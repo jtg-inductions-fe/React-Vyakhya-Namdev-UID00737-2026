@@ -5,8 +5,8 @@ import { MainLayout } from '@layouts/MainLayout';
 import { ErrorPage } from '@components/ErrorPage';
 import { ProtectedRoute } from '@components/ProtectedRoute';
 import { LoginForm } from '@features/auth';
-import { LandingPage } from '@features/landing/LandingPage';
-import { Profile } from '@features/profile/Profile';
+import { LandingPage } from '@features/landing';
+import { Profile } from '@features/profile';
 
 /**
  * Application route configuration.

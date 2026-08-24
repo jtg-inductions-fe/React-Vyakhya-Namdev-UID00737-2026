@@ -14,6 +14,7 @@ import {
  */
 export const IGithubUserMap = (user: IGithubUserApiResponse): IGithubUser => ({
     id: user.id,
+    name: user.name,
     username: user.login,
     avatarUrl: user.avatar_url,
     profileUrl: user.html_url,
@@ -21,6 +22,9 @@ export const IGithubUserMap = (user: IGithubUserApiResponse): IGithubUser => ({
     location: user.location ?? null,
     followers: user.followers,
     following: user.following,
+    githubUrl: user.githubUrl,
+    blog: user.blog ?? null,
+    email: user.email ?? null,
 });
 
 /**
