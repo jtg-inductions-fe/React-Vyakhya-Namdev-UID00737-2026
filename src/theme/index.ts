@@ -14,7 +14,6 @@ let theme = createTheme({
     components,
     typography: {
         fontFamily: 'Inter',
-        ...typography.typographyUtil,
     },
     spacing: (factor: number) =>
         theme.typography.pxToRem(factor * SCALING_FACTOR),

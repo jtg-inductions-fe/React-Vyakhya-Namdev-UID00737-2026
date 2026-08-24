@@ -1,21 +1,8 @@
 import type { Theme } from '@mui/material/styles';
-import type {
-    TypographyOptions,
-    TypographyUtils,
-} from '@mui/material/styles/createTypography';
+import type { TypographyOptions } from '@mui/material/styles/createTypography';
 
 import { HTML_FONT_SIZE } from '@constant';
 import { FONT_WEIGHT } from '@constant';
-
-/* Custom px to rem function */
-const typographyUtil: TypographyUtils = {
-    /**
-     * Converts a pixel value to rem units.
-     * @param px - The pixel value to convert.
-     * @returns The equivalent value in rem units as a string.
-     */
-    pxToRem: (px: number) => `${px / HTML_FONT_SIZE}` + 'rem',
-};
 
 /**
  * Creates a typography block with various styles
@@ -30,60 +17,60 @@ const typographyStyle = (theme: Theme): TypographyOptions => ({
     fontWeightMedium: FONT_WEIGHT.MEDIUM,
 
     h1: {
-        fontSize: typographyUtil.pxToRem(32),
+        fontSize: theme.typography.pxToRem(32),
         fontWeight: FONT_WEIGHT.MEDIUM,
-        lineHeight: typographyUtil.pxToRem(40),
+        lineHeight: theme.typography.pxToRem(40),
 
         [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(48),
-            lineHeight: typographyUtil.pxToRem(62.5),
+            fontSize: theme.typography.pxToRem(48),
+            lineHeight: theme.typography.pxToRem(62.5),
         },
     },
     h2: {
-        fontSize: typographyUtil.pxToRem(28),
+        fontSize: theme.typography.pxToRem(28),
         fontWeight: FONT_WEIGHT.MEDIUM,
-        lineHeight: typographyUtil.pxToRem(36),
+        lineHeight: theme.typography.pxToRem(36),
 
         [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(40),
-            lineHeight: typographyUtil.pxToRem(52),
+            fontSize: theme.typography.pxToRem(40),
+            lineHeight: theme.typography.pxToRem(52),
         },
     },
     h3: {
-        fontSize: typographyUtil.pxToRem(24),
+        fontSize: theme.typography.pxToRem(24),
         fontWeight: FONT_WEIGHT.MEDIUM,
-        lineHeight: typographyUtil.pxToRem(32),
+        lineHeight: theme.typography.pxToRem(32),
 
         [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(32),
-            lineHeight: typographyUtil.pxToRem(42),
+            fontSize: theme.typography.pxToRem(32),
+            lineHeight: theme.typography.pxToRem(42),
         },
     },
     h4: {
-        fontSize: typographyUtil.pxToRem(20),
+        fontSize: theme.typography.pxToRem(20),
         fontWeight: FONT_WEIGHT.MEDIUM,
-        lineHeight: typographyUtil.pxToRem(28),
+        lineHeight: theme.typography.pxToRem(28),
 
         [theme.breakpoints.up('md')]: {
-            fontSize: typographyUtil.pxToRem(24),
-            lineHeight: typographyUtil.pxToRem(32),
+            fontSize: theme.typography.pxToRem(24),
+            lineHeight: theme.typography.pxToRem(32),
         },
     },
     body1: {
-        fontSize: typographyUtil.pxToRem(16),
+        fontSize: theme.typography.pxToRem(16),
         fontWeight: FONT_WEIGHT.REGULAR,
-        lineHeight: typographyUtil.pxToRem(24),
+        lineHeight: theme.typography.pxToRem(24),
     },
     body2: {
-        fontSize: typographyUtil.pxToRem(14),
+        fontSize: theme.typography.pxToRem(14),
         fontWeight: FONT_WEIGHT.REGULAR,
-        lineHeight: typographyUtil.pxToRem(20),
+        lineHeight: theme.typography.pxToRem(20),
     },
     caption: {
-        fontSize: typographyUtil.pxToRem(12),
+        fontSize: theme.typography.pxToRem(12),
         fontWeight: FONT_WEIGHT.REGULAR,
-        lineHeight: typographyUtil.pxToRem(16),
+        lineHeight: theme.typography.pxToRem(16),
     },
 });
 
-export const typography = { typographyStyle, typographyUtil };
+export const typography = { typographyStyle };
