@@ -8,7 +8,7 @@ export const baseQuery = fetchBaseQuery({
     prepareHeaders: (headers) => {
         const token = authStorage.getToken();
 
-        if (token) {
+        if (token && !headers.has('Authorization')) {
             headers.set('Authorization', `Bearer ${token}`);
         }
 

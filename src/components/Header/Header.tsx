@@ -13,7 +13,6 @@ import { Avatar, Divider } from '@mui/material';
 import { UserSearch } from '@features/user-search';
 import { useAuth } from '@hooks/useAuth';
 
-import { HeaderProps } from './header.types';
 import {
     AuthButton,
     HeaderContainer,
@@ -21,6 +20,7 @@ import {
     ProfileMenu,
     StyledMenuItem,
 } from './header.styles';
+import { HeaderProps } from './header.types';
 
 /**
  * Header containing the GitHub logo, user search,
@@ -119,15 +119,15 @@ export const Header = ({ logo, logoAlt }: HeaderProps) => {
                                 <PersonOutlineIcon fontSize="small" />
                                 My Profile
                             </StyledMenuItem>
-                            <StyledMenuItem>
+                            <StyledMenuItem onClick={handleProfileMenuClose}>
                                 <SettingsIcon fontSize="small" />
                                 Settings
                             </StyledMenuItem>
-                            <StyledMenuItem>
+                            <StyledMenuItem onClick={handleProfileMenuClose}>
                                 <SaveIcon fontSize="small" />
                                 Saved Repositories
                             </StyledMenuItem>
-                            <StyledMenuItem>
+                            <StyledMenuItem onClick={handleProfileMenuClose}>
                                 <HelpIcon fontSize="small" />
                                 Help
                             </StyledMenuItem>

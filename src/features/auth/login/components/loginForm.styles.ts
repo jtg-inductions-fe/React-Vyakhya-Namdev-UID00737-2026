@@ -10,10 +10,10 @@ import { styled } from '@mui/material/styles';
 /** Main card that contains the login form */
 export const LoginCard = styled(Card)(({ theme }) => ({
     width: '100%',
-    maxWidth: theme.spacing(100),
-    padding: theme.spacing(12),
+    maxWidth: theme.typography.pxToRem(400),
+    padding: theme.typography.pxToRem(40),
     boxShadow: theme.palette.customShadows.form,
-    borderRadius: theme.spacing(5),
+    borderRadius: theme.typography.pxToRem(15),
 }));
 
 /** Custom styles for the login form input fields */

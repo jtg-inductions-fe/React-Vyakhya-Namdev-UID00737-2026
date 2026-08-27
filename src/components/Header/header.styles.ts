@@ -66,15 +66,15 @@ export const AuthButton = styled(Button)(({ theme }) => ({
 /**
  * Styling the ProfileButton
  */
-export const ProfileButton = styled('button')(({ theme }) => ({
+export const ProfileButton = styled(Button)(({ theme }) => ({
     border: 'none',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'transparent',
     cursor: 'pointer',
-    width: theme.spacing(12),
-    height: theme.spacing(12),
+    width: theme.typography.pxToRem(40),
+    height: theme.typography.pxToRem(50),
     padding: 0,
     margin: 0,
     borderRadius: '50%',
@@ -84,7 +84,7 @@ export const ProfileButton = styled('button')(({ theme }) => ({
 
     '&:focus-visible': {
         outline: `2px solid ${theme.palette.interaction.focus}`,
-        outlineOffset: theme.spacing(2),
+        outlineOffset: theme.typography.pxToRem(2),
     },
 }));
 
@@ -98,7 +98,7 @@ export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
 /** Kept ProfileMenu at distance from Profile Button */
 export const ProfileMenu = styled(Menu)(({ theme }) => ({
     [`& .${paperClasses.root}`]: {
-        marginTop: theme.spacing(2),
-        minWidth: theme.spacing(15),
+        marginTop: theme.typography.pxToRem(2),
+        minWidth: theme.typography.pxToRem(15),
     },
 }));
