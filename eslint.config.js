@@ -63,6 +63,9 @@ export default tseslint.config(
                         ['^\\w'],
                         ['^@mui'],
                         [
+                            '^@?(?!mui|assets|components|constant|features|hooks|routes|services|store|theme|types|utils)\\w',
+                        ],
+                        [
                             '^@(assets|components|constant|features|hooks|routes|services|store|theme|types|utils)',
                         ],
                         ['^\\./', '^\\.\\./'],

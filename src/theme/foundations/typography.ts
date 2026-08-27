@@ -1,8 +1,7 @@
 import type { Theme } from '@mui/material/styles';
 import type { TypographyOptions } from '@mui/material/styles/createTypography';
 
-import { HTML_FONT_SIZE } from '@constant';
-import { FONT_WEIGHT } from '@constant';
+import { FONT_WEIGHT } from '../../constants';
 
 /**
  * Creates a typography block with various styles
@@ -11,7 +10,7 @@ import { FONT_WEIGHT } from '@constant';
  */
 const typographyStyle = (theme: Theme): TypographyOptions => ({
     fontFamily: 'Inter',
-    htmlFontSize: HTML_FONT_SIZE,
+    htmlFontSize: 16,
     fontWeightLight: FONT_WEIGHT.LIGHT,
     fontWeightRegular: FONT_WEIGHT.REGULAR,
     fontWeightMedium: FONT_WEIGHT.MEDIUM,

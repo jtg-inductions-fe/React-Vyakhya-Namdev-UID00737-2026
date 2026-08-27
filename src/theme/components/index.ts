@@ -3,7 +3,8 @@ import type { Components } from '@mui/material/styles';
 // Local Font files
 import InterRegularTTF from '@assets/fonts/inter/inter-regular.ttf';
 import InterRegularWOFF2 from '@assets/fonts/inter/inter-regular.woff2';
-import { FONT_WEIGHT } from '@constant';
+
+import { FONT_WEIGHT } from '../../constants';
 
 //Font face declarations
 const fontFaceDeclarations = `
