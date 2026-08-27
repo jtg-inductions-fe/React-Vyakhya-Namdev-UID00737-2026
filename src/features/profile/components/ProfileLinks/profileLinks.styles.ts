@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Link, Typography } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 /** Displays each profile link with a separator. */
@@ -11,7 +11,7 @@ export const LinkItem = styled(Box)(({ theme }) => ({
 }));
 
 /** Styles the clickable profile link. */
-export const LinkValue = styled('a')(({ theme }) => ({
+export const LinkValue = styled(Link)(({ theme }) => ({
     marginLeft: 'auto',
     display: 'flex',
     alignItems: 'center',

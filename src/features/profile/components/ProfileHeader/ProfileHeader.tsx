@@ -56,7 +56,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                         <Typography variant="h3">{user.following}</Typography>
                         <StyledFollowerButton variant="contained">
                             <GroupAdd />
-                            <Typography variant="body2">Following</Typography>
+                            <Typography variant="body1">Following</Typography>
                         </StyledFollowerButton>
                     </StatContent>
                     <Divider orientation="vertical" flexItem />
@@ -64,7 +64,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                         <Typography variant="h3">{user.followers}</Typography>
                         <StyledFollowingButton variant="contained">
                             <SupervisorAccount />
-                            <Typography variant="body2">Followers</Typography>
+                            <Typography variant="body1">Followers</Typography>
                         </StyledFollowingButton>
                     </StatContent>
                 </Box>

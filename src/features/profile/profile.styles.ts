@@ -11,7 +11,7 @@ export const ProfileContainer = styled(Box)(({ theme }) => ({
 /** Keeps the profile content centered and within a fixed width. */
 export const ProfileWrapper = styled(Box)(({ theme }) => ({
     width: '100%',
-    maxWidth: theme.spacing(250),
+    maxWidth: theme.typography.pxToRem(950),
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column',
@@ -22,7 +22,7 @@ export const ProfileWrapper = styled(Box)(({ theme }) => ({
 export const ProfileSection = styled(Box)(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
     border: `1px solid ${theme.palette.divider}`,
-    borderRadius: theme.spacing(5),
+    borderRadius: theme.typography.pxToRem(10),
     padding: theme.spacing(5),
 }));
 

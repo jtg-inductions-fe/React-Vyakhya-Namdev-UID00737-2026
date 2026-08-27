@@ -3,8 +3,8 @@ import { styled } from '@mui/material/styles';
 
 /** Sets the size of the user's profile image. */
 export const StyledAvatar = styled(Avatar)(({ theme }) => ({
-    width: theme.spacing(80),
-    height: theme.spacing(80),
+    width: theme.typography.pxToRem(325),
+    height: theme.typography.pxToRem(325),
     border: `4px solid ${theme.palette.background.paper}`,
     boxShadow: theme.palette.customShadows.avatar,
 }));
@@ -20,7 +20,7 @@ export const StatContent = styled(Box)({
 export const ProfileActions = styled(Box)(({ theme }) => ({
     display: 'flex',
     gap: theme.spacing(5),
-    marginTop: theme.spacing(8),
+    marginTop: theme.typography.pxToRem(40),
 }));
 
 /** Styles the follow button using the theme colors. */
@@ -28,7 +28,7 @@ export const ProfileActionButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(2),
     backgroundColor: theme.palette.success.main,
     color: theme.palette.background.default,
-    width: theme.spacing(40),
+    width: theme.typography.pxToRem(120),
     textTransform: 'capitalize',
 
     '&:hover': {
@@ -42,8 +42,8 @@ export const StyledFollowerButton = styled(Button)(({ theme }) => ({
     color: theme.palette.customColors.button_text_primary,
     padding: `0 ${theme.spacing(2)}`,
     gap: theme.spacing(2),
-    width: theme.spacing(30),
-    height: theme.spacing(7),
+    width: theme.typography.pxToRem(120),
+    height: theme.typography.pxToRem(30),
     textTransform: 'capitalize',
 
     '&:hover': {
@@ -56,8 +56,8 @@ export const StyledFollowingButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.customColors.button_secondary,
     color: theme.palette.customColors.button_text_secondary,
     gap: theme.spacing(2),
-    width: theme.spacing(30),
-    height: theme.spacing(7),
+    width: theme.typography.pxToRem(120),
+    height: theme.typography.pxToRem(30),
     padding: `0 ${theme.spacing(2)}`,
 
     textTransform: 'capitalize',
@@ -72,7 +72,7 @@ export const EditButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(1),
     color: theme.palette.customColors.button_text_secondary,
     borderColor: theme.palette.customColors.button_text_secondary,
-    width: theme.spacing(40),
+    width: theme.typography.pxToRem(150),
     textTransform: 'capitalize',
 
     '&:hover': {
