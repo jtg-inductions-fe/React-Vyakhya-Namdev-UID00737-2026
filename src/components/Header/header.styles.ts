@@ -98,7 +98,7 @@ export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
 /** Kept ProfileMenu at distance from Profile Button */
 export const ProfileMenu = styled(Menu)(({ theme }) => ({
     [`& .${paperClasses.root}`]: {
-        marginTop: theme.typography.pxToRem(2),
+        marginTop: theme.spacing(2),
         minWidth: theme.typography.pxToRem(15),
     },
 }));
