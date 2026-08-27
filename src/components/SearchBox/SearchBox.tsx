@@ -11,7 +11,7 @@ import {
 } from '@mui/material';
 
 import { Loader } from '@components/Loader';
-import { MIN_QUERY_LENGTH } from '@features/user-search/searchBox.constants';
+import { MIN_QUERY_LENGTH } from '@features/user-search/userSearch.constants';
 
 import { SearchBoxPopper, SearchBoxWrapper } from './searchBox.styles';
 import { ISearchBoxProps } from './searchBox.types';

@@ -3,4 +3,4 @@ export {
     MIN_QUERY_LENGTH,
     DEBOUNCE_DELAY,
     MAX_SUGGESTIONS,
-} from './searchBox.constants';
+} from './userSearch.constants';
