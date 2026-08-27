@@ -11,7 +11,7 @@ import { styled } from '@mui/material/styles';
 export const LoginCard = styled(Card)(({ theme }) => ({
     width: '100%',
     maxWidth: theme.typography.pxToRem(400),
-    padding: theme.typography.pxToRem(40),
+    padding: theme.spacing(10),
     boxShadow: theme.palette.customShadows.form,
     borderRadius: theme.typography.pxToRem(15),
 }));

@@ -4,7 +4,7 @@ import {
     AUTH_TOKEN_KEY,
     AUTH_USER_KEY,
     COOKIE_MAX_AGE,
-} from '../../constants/authConstants';
+} from '@constants/authConstants';
 
 /** Creates a cookie with the given value and expiration time */
 const setCookie = (name: string, value: string, maxAge: number): void => {

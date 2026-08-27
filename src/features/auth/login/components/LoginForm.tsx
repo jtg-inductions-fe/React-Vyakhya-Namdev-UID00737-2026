@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Snackbar, Typography } from '@mui/material';
 
 import { LoginCard, StyledBuuton, StyledTextField } from './loginForm.styles';
 import { useLoginForm } from '../hooks/useLoginForm';
@@ -8,6 +8,7 @@ export const LoginForm = () => {
         username,
         password,
         errors,
+        apiError,
         isLoading,
         handleUsernameChange,
         handlePasswordChange,
@@ -39,20 +40,6 @@ export const LoginForm = () => {
                     >
                         Welcome Back!
                     </Typography>
-
-                    {/* Displays authentication errors */}
-                    {errors.authentication && (
-                        <Typography
-                            width="100%"
-                            mb={1}
-                            textAlign="center"
-                            variant="body2"
-                            color="error"
-                            role="alert"
-                        >
-                            {errors.authentication}
-                        </Typography>
-                    )}
 
                     {/* Username input field */}
                     <StyledTextField
@@ -88,6 +75,12 @@ export const LoginForm = () => {
                     </StyledBuuton>
                 </Box>
             </LoginCard>
+            <Snackbar
+                open={Boolean(apiError)}
+                autoHideDuration={500}
+                onClose={() => {}}
+                message={apiError}
+            />
         </Box>
     );
 };

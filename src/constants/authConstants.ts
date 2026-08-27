@@ -1,4 +1,3 @@
-export const GITHUB_API_URL = 'https://api.github.com';
 export const MIN_USERNAME_LENGTH = 3;
 export const MIN_PASSWORD_LENGTH = 8;
 export const AUTH_USER_KEY = 'github_auth_user';

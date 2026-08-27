@@ -2,5 +2,4 @@
 export interface LoginErrors {
     username?: string;
     password?: string;
-    authentication?: string;
 }

@@ -24,6 +24,10 @@ export const router = createBrowserRouter([
                 path: 'profile/:username',
                 element: <Profile />,
             },
+            {
+                path: '*',
+                element: <ErrorPage />,
+            },
         ],
     },
     {

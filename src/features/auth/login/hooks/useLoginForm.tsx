@@ -4,10 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthenticateUserMutation } from 'services/api/api';
 import { authStorage } from 'services/auth/authStorage';
 
-import {
-    MIN_PASSWORD_LENGTH,
-    MIN_USERNAME_LENGTH,
-} from '../../../../constants/authConstants';
+import { MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '@constants/index';
+
 import { LoginErrors } from '../types/login.types';
 
 export const useLoginForm = () => {
@@ -15,6 +13,7 @@ export const useLoginForm = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState<LoginErrors>({});
+    const [apiError, setApiError] = useState<string>('');
     const [authenticateUser, { isLoading }] = useAuthenticateUserMutation();
 
     /** Validates the username and password before login */
@@ -28,7 +27,7 @@ export const useLoginForm = () => {
         }
 
         if (!password) {
-            newErrors.password = 'Password is required!';
+            newErrors.password = 'Personal access token is required!';
         } else if (password.length < MIN_PASSWORD_LENGTH) {
             newErrors.password = `Password must be at least ${MIN_PASSWORD_LENGTH} characters!`;
         }
@@ -41,32 +40,32 @@ export const useLoginForm = () => {
     const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
 
-        if (errors.username || errors.authentication) {
+        if (errors.username) {
             setErrors((previous) => ({
                 ...previous,
                 username: undefined,
-                authentication: undefined,
             }));
         }
+        setApiError('');
     };
 
     /** Updates the password and clears its related errors */
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
 
-        if (errors.password || errors.authentication) {
+        if (errors.password) {
             setErrors((previous) => ({
                 ...previous,
                 password: undefined,
-                authentication: undefined,
             }));
         }
+        setApiError('');
     };
 
     /** Handles form validation, authentication and redirect after login */
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-
+        setApiError('');
         if (!validate()) {
             return;
         }
@@ -78,13 +77,10 @@ export const useLoginForm = () => {
             }).unwrap();
 
             /** Checks whether the logged-in account matches the entered username */
-            if (
-                user.username.toLocaleLowerCase() !==
-                username.trim().toLocaleLowerCase()
-            ) {
-                setErrors({
-                    authentication: 'User name not matched!',
-                });
+            if (user.username.toLowerCase() !== username.trim().toLowerCase()) {
+                setApiError(
+                    'Username does not match the authenticated GitHub account!',
+                );
                 return;
             }
 
@@ -97,22 +93,33 @@ export const useLoginForm = () => {
                 error !== null &&
                 'status' in error
             ) {
-                const apiError = error as {
+                const errorResponse = error as {
                     status?: number;
+                    data?: {
+                        message?: string;
+                    };
                 };
 
-                if (apiError.status === 401 || apiError.status === 403) {
-                    setErrors({
-                        authentication: 'Invalid credentials provided!',
-                    });
+                if (errorResponse.status === 401) {
+                    setApiError('Invalid username or personal access token.');
+                    return;
+                }
+
+                if (errorResponse.status === 403) {
+                    setApiError(
+                        'GitHub denied the request. Your token may be invalid, expired, or rate limited.',
+                    );
+                    return;
+                }
+
+                if (errorResponse.data?.message) {
+                    setApiError(errorResponse.data.message);
                     return;
                 }
             }
 
             /** Handles unexpected errors during login */
-            setErrors({
-                authentication: 'Unable to login, Please try again!',
-            });
+            setApiError('Unable to login, Please try again!');
         }
     };
 
@@ -120,6 +127,7 @@ export const useLoginForm = () => {
         username,
         password,
         errors,
+        apiError,
         isLoading,
         handleUsernameChange,
         handlePasswordChange,
