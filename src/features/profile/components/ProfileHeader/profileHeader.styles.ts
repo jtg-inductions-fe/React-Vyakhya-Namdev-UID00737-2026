@@ -16,13 +16,6 @@ export const StatContent = styled(Box)({
     flexDirection: 'column',
 });
 
-/** Groups the available actions for the profile. */
-export const ProfileActions = styled(Box)(({ theme }) => ({
-    display: 'flex',
-    gap: theme.spacing(5),
-    marginTop: theme.typography.pxToRem(40),
-}));
-
 /** Styles the follow button using the theme colors. */
 export const ProfileActionButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(2),

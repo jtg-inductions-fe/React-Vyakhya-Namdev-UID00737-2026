@@ -1,4 +1,4 @@
-import { IGithubUser } from 'services/api';
+import { IGithubUser } from '@services/api';
 
 /** Props used to display the user's main profile information. */
 export interface IProfileHeaderProps {

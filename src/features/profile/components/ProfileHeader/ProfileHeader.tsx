@@ -1,5 +1,3 @@
-import { authStorage } from 'services/auth/authStorage';
-
 import {
     EditOutlined,
     GroupAdd,
@@ -10,11 +8,11 @@ import {
 import { Box, Divider, Typography } from '@mui/material';
 
 import type { IProfileHeaderProps } from '@features/profile/types/profile.types';
+import { authStorage } from '@services/auth/storage';
 
 import {
     EditButton,
     ProfileActionButton,
-    ProfileActions,
     StatContent,
     StyledAvatar,
     StyledFollowerButton,
@@ -69,7 +67,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                     </StatContent>
                 </Box>
 
-                <ProfileActions>
+                <Box display="flex" gap={5} mt={20}>
                     {isOwnProfile ? (
                         <EditButton
                             variant="outlined"
@@ -86,7 +84,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                             <Typography variant="body1">Follow</Typography>
                         </ProfileActionButton>
                     )}
-                </ProfileActions>
+                </Box>
             </Box>
         </Box>
     );

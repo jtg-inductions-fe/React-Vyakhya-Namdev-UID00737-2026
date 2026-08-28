@@ -1,5 +1,4 @@
 import { useParams } from 'react-router-dom';
-import { useGetUserQuery } from 'services/api/api';
 
 import { Box } from '@mui/material';
 
@@ -7,6 +6,7 @@ import { Loader } from '@components/Loader';
 import { ProfileBio } from '@features/profile/components/ProfileBio';
 import { ProfileHeader } from '@features/profile/components/ProfileHeader';
 import { ProfileLinks } from '@features/profile/components/ProfileLinks';
+import { useGetUserQuery } from '@services/api/';
 
 import {
     ProfileContainer,
