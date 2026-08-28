@@ -56,7 +56,7 @@ export const LoginForm = () => {
 
                     {/* Password input field */}
                     <StyledTextField
-                        label="GitHub Personal Access Token"
+                        label="Password"
                         type="password"
                         value={password}
                         onChange={handlePasswordChange}

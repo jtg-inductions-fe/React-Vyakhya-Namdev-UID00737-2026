@@ -4,8 +4,7 @@ import {
     COOKIE_MAX_AGE,
 } from '@constants/authConstants';
 import { IGithubUser } from '@services/api/';
-
-import { deleteCookie, getCookie, setCookie } from '../../utils/cookie';
+import { deleteCookie, getCookie, setCookie } from '@utils/cookie';
 
 /** Provides methods to store, retrieve and clear authentication data */
 export const authStorage = {

@@ -155,7 +155,10 @@ export const Header = ({ logo, logoAlt }: HeaderProps) => {
                             Log in
                         </AuthButton>
 
-                        <AuthButton variant="contained" onClick={handleLogin}>
+                        <AuthButton
+                            variant="contained"
+                            onClick={() => void navigate('/signup')}
+                        >
                             Sign up
                         </AuthButton>
                     </>
