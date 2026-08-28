@@ -92,14 +92,16 @@ export const useLoginForm = () => {
 
             /** Checks whether the logged-in account matches the entered username */
             if (user.username.toLowerCase() !== username.trim().toLowerCase()) {
-                setApiError(
-                    'Username does not match the authenticated GitHub account!',
-                );
+                setApiError('Invalid credentials provided!');
                 return;
             }
 
-            auth.setAuth(user, password);
-            void navigate(`/profile/${user.username}`);
+            auth.setToken(password);
+            void navigate(`/profile/${user.username}`, {
+                state: {
+                    message: 'LoggedIn successful!',
+                },
+            });
         } catch (error) {
             /** Handles authentication errors returned by the API */
             if (

@@ -49,7 +49,12 @@ export const Header = ({ logo, logoAlt }: HeaderProps) => {
     const handleLogout = () => {
         handleProfileMenuClose();
         logout();
-        void navigate('/', { replace: true });
+        void navigate('/', {
+            replace: true,
+            state: {
+                message: 'Logged out successfully!',
+            },
+        });
     };
 
     const handleLogin = () => {

@@ -65,10 +65,30 @@ export const githubApi = createApi({
             transformResponse: (response: IGithubUserApiResponse) =>
                 IGithubUserMap(response),
         }),
+        /**
+         * Fetches the latest authenticated user information.
+         */
+        getAuthenticatedUser: builder.query<IGithubUser, string>({
+            query: (token) => ({
+                url: '/user',
+                headers: {
+                    Accept: 'application/vnd.github+json',
+                    Authorization: `Bearer ${token}`,
+                    'X-Github-Api-Version': '2026-03-10',
+                },
+            }),
+
+            transformResponse: (response: IGithubUserApiResponse) =>
+                IGithubUserMap(response),
+        }),
     }),
 });
 
 /**
  * RTK Query hook used by components to search GitHub users.
  */
-export const { useSearchUsersQuery, useAuthenticateUserMutation } = githubApi;
+export const {
+    useSearchUsersQuery,
+    useAuthenticateUserMutation,
+    useGetAuthenticatedUserQuery,
+} = githubApi;

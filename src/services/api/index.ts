@@ -1,4 +1,8 @@
-export { useSearchUsersQuery, useAuthenticateUserMutation } from './api';
+export {
+    useSearchUsersQuery,
+    useAuthenticateUserMutation,
+    useGetAuthenticatedUserQuery,
+} from './api';
 export type {
     IGithubSearchApiResponse,
     IGithubUser,
