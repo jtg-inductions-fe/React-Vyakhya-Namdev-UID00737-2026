@@ -3,6 +3,7 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { MIN_USERNAME_LENGTH } from '@constants/index';
+import { CLASSIC_PAT_REGEX, FINE_GRAINED_PAT_REGEX } from '@constants/index';
 import { useAuthenticateUserMutation } from '@services/api';
 import { auth } from '@utils/auth';
 
@@ -21,8 +22,6 @@ export const useLoginForm = () => {
     const [errors, setErrors] = useState<LoginErrors>({});
     const [apiError, setApiError] = useState<string>('');
     const [authenticateUser, { isLoading }] = useAuthenticateUserMutation();
-    const CLASSIC_PAT_REGEX = /^ghp_[a-zA-Z0-9]{36}$/;
-    const FINE_GRAINED_PAT_REGEX = /^github_pat_[a-zA-Z0-9_]{82}$/;
 
     /** Validates the username and password before login */
     const validate = (): boolean => {
