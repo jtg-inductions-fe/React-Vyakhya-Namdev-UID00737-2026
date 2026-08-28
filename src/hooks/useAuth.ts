@@ -6,13 +6,13 @@
  */
 import { useCallback, useState } from 'react';
 
-import { authStorage } from '@services/auth/storage';
+import { auth } from '@utils/auth';
 
 export const useAuth = () => {
-    const [user, setUser] = useState(() => authStorage.getUser());
+    const [user, setUser] = useState(() => auth.getUser());
     const isAuthenticated = user !== null;
     const logout = useCallback(() => {
-        authStorage.clearAuth();
+        auth.clearAuth();
         setUser(null);
     }, []);
 

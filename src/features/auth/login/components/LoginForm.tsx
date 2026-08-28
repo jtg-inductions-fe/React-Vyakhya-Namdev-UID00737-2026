@@ -1,4 +1,4 @@
-import { Box, Snackbar, Typography } from '@mui/material';
+import { Box, FormControl, Snackbar, Typography } from '@mui/material';
 
 import { Loader } from '@components/Loader';
 
@@ -34,7 +34,6 @@ export const LoginForm = () => {
                         void handleSubmit(event);
                     }}
                 >
-                    {/* Login form heading */}
                     <Typography
                         variant="h3"
                         textAlign="center"
@@ -43,30 +42,31 @@ export const LoginForm = () => {
                         Welcome Back!
                     </Typography>
 
-                    {/* Username input field */}
-                    <StyledTextField
-                        label="Username"
-                        value={username}
-                        onChange={handleUsernameChange}
-                        error={Boolean(errors.username)}
-                        helperText={errors.username}
-                        fullWidth
-                        size="small"
-                    />
+                    <FormControl fullWidth>
+                        <StyledTextField
+                            label="Username"
+                            value={username}
+                            onChange={handleUsernameChange}
+                            error={Boolean(errors.username)}
+                            helperText={errors.username}
+                            size="small"
+                        />
+                    </FormControl>
 
-                    {/* Password input field */}
-                    <StyledTextField
-                        label="Password"
-                        type="password"
-                        value={password}
-                        onChange={handlePasswordChange}
-                        error={Boolean(errors.password)}
-                        helperText={errors.password ?? 'Enter your GitHub PAT'}
-                        fullWidth
-                        size="small"
-                    />
+                    <FormControl fullWidth>
+                        <StyledTextField
+                            label="Password"
+                            type="password"
+                            value={password}
+                            onChange={handlePasswordChange}
+                            error={Boolean(errors.password)}
+                            helperText={
+                                errors.password ?? 'Enter your GitHub PAT'
+                            }
+                            size="small"
+                        />
+                    </FormControl>
 
-                    {/* Submits the login form */}
                     <StyledButton
                         type="submit"
                         variant="contained"
@@ -77,6 +77,7 @@ export const LoginForm = () => {
                     </StyledButton>
                 </Box>
             </LoginCard>
+
             <Snackbar
                 open={Boolean(apiError)}
                 autoHideDuration={500}

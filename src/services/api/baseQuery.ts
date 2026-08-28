@@ -1,12 +1,12 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { authStorage } from '@services/auth/storage';
+import { auth } from '@utils/auth';
 
 /** Configures the base API request with authentication and GitHub headers */
 export const baseQuery = fetchBaseQuery({
     baseUrl: import.meta.env.VITE_GITHUB_USER_API_URL,
     prepareHeaders: (headers) => {
-        const token = authStorage.getToken();
+        const token = auth.getToken();
 
         if (token && !headers.has('Authorization')) {
             headers.set('Authorization', `Bearer ${token}`);

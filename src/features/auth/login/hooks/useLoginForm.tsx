@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { MIN_USERNAME_LENGTH } from '@constants/index';
 import { useAuthenticateUserMutation } from '@services/api';
-import { authStorage } from '@services/auth/storage';
+import { auth } from '@utils/auth';
 
 import { LoginErrors } from '../types/login.types';
 
@@ -21,6 +21,8 @@ export const useLoginForm = () => {
     const [errors, setErrors] = useState<LoginErrors>({});
     const [apiError, setApiError] = useState<string>('');
     const [authenticateUser, { isLoading }] = useAuthenticateUserMutation();
+    const CLASSIC_PAT_REGEX = /^ghp_[a-zA-Z0-9]{36}$/;
+    const FINE_GRAINED_PAT_REGEX = /^github_pat_[a-zA-Z0-9_]{82}$/;
 
     /** Validates the username and password before login */
     const validate = (): boolean => {
@@ -34,6 +36,14 @@ export const useLoginForm = () => {
 
         if (!password) {
             newErrors.password = 'Personal access token is required!';
+        } else {
+            const isValidClassic = CLASSIC_PAT_REGEX.test(password);
+            const isValidFineGrained = FINE_GRAINED_PAT_REGEX.test(password);
+
+            if (!isValidClassic && !isValidFineGrained) {
+                newErrors.password =
+                    'Invalid token format! Please provide valid PAT.';
+            }
         }
 
         setErrors(newErrors);
@@ -88,7 +98,7 @@ export const useLoginForm = () => {
                 return;
             }
 
-            authStorage.setAuth(user, password);
+            auth.setAuth(user, password);
             void navigate(`/profile/${user.username}`);
         } catch (error) {
             /** Handles authentication errors returned by the API */

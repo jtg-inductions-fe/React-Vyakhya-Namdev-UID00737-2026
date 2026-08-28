@@ -7,7 +7,7 @@ import { IGithubUser } from '@services/api/';
 import { deleteCookie, getCookie, setCookie } from '@utils/cookie';
 
 /** Provides methods to store, retrieve and clear authentication data */
-export const authStorage = {
+export const auth = {
     /** Retrieves the authenticated user's data from cookies */
     getUser: (): IGithubUser | null => {
         const storedUser = getCookie(AUTH_USER_KEY);
