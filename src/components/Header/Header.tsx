@@ -56,10 +56,6 @@ export const Header = ({ logo, logoAlt }: HeaderProps) => {
         void navigate('/login');
     };
 
-    const handlePageNotFound = () => {
-        void navigate('/page-not-found');
-    };
-
     return (
         <HeaderContainer>
             <Box display="flex" alignItems="center" gap={5} flex={1}>
@@ -123,15 +119,23 @@ export const Header = ({ logo, logoAlt }: HeaderProps) => {
                                 <PersonOutlineIcon fontSize="small" />
                                 My Profile
                             </StyledMenuItem>
-                            <StyledMenuItem onClick={handlePageNotFound}>
+                            <StyledMenuItem
+                                onClick={() => void navigate('/settings')}
+                            >
                                 <SettingsIcon fontSize="small" />
                                 Settings
                             </StyledMenuItem>
-                            <StyledMenuItem onClick={handlePageNotFound}>
+                            <StyledMenuItem
+                                onClick={() =>
+                                    void navigate('/saved-repositories')
+                                }
+                            >
                                 <SaveIcon fontSize="small" />
                                 Saved Repositories
                             </StyledMenuItem>
-                            <StyledMenuItem onClick={handlePageNotFound}>
+                            <StyledMenuItem
+                                onClick={() => void navigate('/help')}
+                            >
                                 <HelpIcon fontSize="small" />
                                 Help
                             </StyledMenuItem>

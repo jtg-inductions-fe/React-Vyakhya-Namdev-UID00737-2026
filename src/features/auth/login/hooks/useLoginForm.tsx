@@ -1,12 +1,18 @@
 import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useAuthenticateUserMutation } from 'services/api/api';
-import { authStorage } from 'services/auth/authStorage';
 
-import { MIN_PASSWORD_LENGTH, MIN_USERNAME_LENGTH } from '@constants/index';
+import { MIN_USERNAME_LENGTH } from '@constants/index';
+import { useAuthenticateUserMutation } from '@services/api';
+import { authStorage } from '@services/auth/storage';
 
 import { LoginErrors } from '../types/login.types';
+
+const AUTH_ERROR_MESSAGES: Record<number, string> = {
+    401: 'Invalid username or personal access token!',
+    403: 'You are not authorized to access this account!',
+    404: 'GitHub account not found!',
+};
 
 export const useLoginForm = () => {
     const navigate = useNavigate();
@@ -28,8 +34,6 @@ export const useLoginForm = () => {
 
         if (!password) {
             newErrors.password = 'Personal access token is required!';
-        } else if (password.length < MIN_PASSWORD_LENGTH) {
-            newErrors.password = `Password must be at least ${MIN_PASSWORD_LENGTH} characters!`;
         }
 
         setErrors(newErrors);
@@ -100,22 +104,15 @@ export const useLoginForm = () => {
                     };
                 };
 
-                if (errorResponse.status === 401) {
-                    setApiError('Invalid username or personal access token.');
-                    return;
-                }
+                const errorMessage =
+                    errorResponse.data?.message ??
+                    (errorResponse.status
+                        ? AUTH_ERROR_MESSAGES[errorResponse.status]
+                        : undefined) ??
+                    'Unable to login, Please try again!';
 
-                if (errorResponse.status === 403) {
-                    setApiError(
-                        'GitHub denied the request. Your token may be invalid, expired, or rate limited.',
-                    );
-                    return;
-                }
-
-                if (errorResponse.data?.message) {
-                    setApiError(errorResponse.data.message);
-                    return;
-                }
+                setApiError(errorMessage);
+                return;
             }
 
             /** Handles unexpected errors during login */

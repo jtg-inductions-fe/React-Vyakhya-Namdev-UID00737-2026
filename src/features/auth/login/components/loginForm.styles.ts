@@ -1,6 +1,7 @@
 import {
     Button,
     Card,
+    formHelperTextClasses,
     inputLabelClasses,
     outlinedInputClasses,
     TextField,
@@ -26,10 +27,14 @@ export const StyledTextField = styled(TextField)(({ theme }) => ({
     [`& .${inputLabelClasses.root}.${inputLabelClasses.focused}`]: {
         color: theme.palette.text.primary,
     },
+
+    [`& .${formHelperTextClasses.root}`]: {
+        marginLeft: 0,
+    },
 }));
 
 /** Styles for the login button */
-export const StyledBuuton = styled(Button)(({ theme }) => ({
+export const StyledButton = styled(Button)(({ theme }) => ({
     backgroundColor: theme.palette.text.primary,
     '&:hover': {
         backgroundColor: theme.palette.interaction.hoverDark,

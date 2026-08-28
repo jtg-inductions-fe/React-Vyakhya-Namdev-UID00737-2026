@@ -1,6 +1,8 @@
 import { Box, Snackbar, Typography } from '@mui/material';
 
-import { LoginCard, StyledBuuton, StyledTextField } from './loginForm.styles';
+import { Loader } from '@components/Loader';
+
+import { LoginCard, StyledButton, StyledTextField } from './loginForm.styles';
 import { useLoginForm } from '../hooks/useLoginForm';
 
 export const LoginForm = () => {
@@ -54,31 +56,30 @@ export const LoginForm = () => {
 
                     {/* Password input field */}
                     <StyledTextField
-                        label="Password"
+                        label="GitHub Personal Access Token"
                         type="password"
                         value={password}
                         onChange={handlePasswordChange}
                         error={Boolean(errors.password)}
-                        helperText={errors.password}
+                        helperText={errors.password ?? 'Enter your GitHub PAT'}
                         fullWidth
                         size="small"
                     />
 
                     {/* Submits the login form */}
-                    <StyledBuuton
+                    <StyledButton
                         type="submit"
                         variant="contained"
                         disabled={isLoading}
                         fullWidth
                     >
-                        {isLoading ? 'Logging in...' : 'Login'}
-                    </StyledBuuton>
+                        {isLoading ? <Loader /> : 'Login'}
+                    </StyledButton>
                 </Box>
             </LoginCard>
             <Snackbar
                 open={Boolean(apiError)}
                 autoHideDuration={500}
-                onClose={() => {}}
                 message={apiError}
             />
         </Box>

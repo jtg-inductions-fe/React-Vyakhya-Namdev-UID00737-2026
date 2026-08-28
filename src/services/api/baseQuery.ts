@@ -1,6 +1,6 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { authStorage } from 'services/auth/authStorage';
+import { authStorage } from '@services/auth/storage';
 
 /** Configures the base API request with authentication and GitHub headers */
 export const baseQuery = fetchBaseQuery({

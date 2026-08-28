@@ -13,12 +13,7 @@ export interface IGithubUser {
 }
 
 /**
-<<<<<<< HEAD
- * Uses GitHub's original field names and is mapped to `IGithubUser`
- * before being consumed by the application.
-=======
  * Raw GitHub user response.
->>>>>>> 3d1e06e ([VN_A4_02]: Login Form and PAT Authentication added)
  */
 export interface IGithubUserApiResponse {
     id: number;

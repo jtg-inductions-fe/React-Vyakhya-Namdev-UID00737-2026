@@ -32,7 +32,8 @@
             "@components/*": ["components/*"],
             "@services/*": ["services/*"],
             "@layouts/*": ["layouts/*"],
-            "@routes/*": ["routes/*"]
+            "@routes/*": ["routes/*"],
+            "@utils/*": ["utils/*"]
         }
     },
     "include": ["src", "vite.config.ts"]

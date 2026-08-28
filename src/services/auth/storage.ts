@@ -1,39 +1,11 @@
-import { IGithubUser } from 'services/api/api.types';
-
 import {
     AUTH_TOKEN_KEY,
     AUTH_USER_KEY,
     COOKIE_MAX_AGE,
 } from '@constants/authConstants';
+import { IGithubUser } from '@services/api/';
 
-/** Creates a cookie with the given value and expiration time */
-const setCookie = (name: string, value: string, maxAge: number): void => {
-    document.cookie = [
-        `${name}=${encodeURIComponent(value)}`,
-        `Max-Age=${maxAge}`,
-        'Path=/',
-        'SameSite=Lax',
-    ].join('; ');
-};
-
-/** Returns the stored value of a cookie by its name */
-const getCookie = (name: string): string | null => {
-    const cookies = document.cookie.split('; ');
-    const cookie = cookies.find((cookieValue) =>
-        cookieValue.startsWith(`${name}=`),
-    );
-
-    if (!cookie) return null;
-
-    return decodeURIComponent(cookie.substring(name.length + 1));
-};
-
-/** Removes a cookie by setting its maximum age to zero */
-const deleteCookie = (name: string): void => {
-    document.cookie = [`${name}=`, 'Max-Age=0', 'Path=/', 'SameSite=Lax'].join(
-        '; ',
-    );
-};
+import { deleteCookie, getCookie, setCookie } from '../../utils/cookie';
 
 /** Provides methods to store, retrieve and clear authentication data */
 export const authStorage = {
@@ -41,7 +13,9 @@ export const authStorage = {
     getUser: (): IGithubUser | null => {
         const storedUser = getCookie(AUTH_USER_KEY);
 
-        if (!storedUser) return null;
+        if (!storedUser) {
+            return null;
+        }
 
         try {
             return JSON.parse(storedUser) as IGithubUser;
