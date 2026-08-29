@@ -6,7 +6,7 @@
  */
 import { useCallback, useState } from 'react';
 
-import { useGetAuthenticatedUserQuery } from '@services/api/';
+import { useGetAuthenticatedUserQuery } from '@services/api';
 import { auth } from '@utils/auth';
 
 export const useAuth = () => {

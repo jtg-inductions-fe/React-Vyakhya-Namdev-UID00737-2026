@@ -1,4 +1,5 @@
 export {
+    githubApi,
     useSearchUsersQuery,
     useAuthenticateUserMutation,
     useGetAuthenticatedUserQuery,

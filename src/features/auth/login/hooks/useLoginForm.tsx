@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { MIN_USERNAME_LENGTH } from '@constants/index';
-import { CLASSIC_PAT_REGEX, FINE_GRAINED_PAT_REGEX } from '@constants/index';
+import { MIN_USERNAME_LENGTH } from '@constants';
+import { CLASSIC_PAT_REGEX, FINE_GRAINED_PAT_REGEX } from '@constants';
 import { useAuthenticateUserMutation } from '@services/api';
 import { auth } from '@utils/auth';
 

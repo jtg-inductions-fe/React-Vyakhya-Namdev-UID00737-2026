@@ -1,4 +1,4 @@
-import { AUTH_TOKEN_KEY, COOKIE_MAX_AGE } from '@constants/authConstants';
+import { AUTH_TOKEN_KEY, COOKIE_MAX_AGE } from '@constants';
 import { deleteCookie, getCookie, setCookie } from '@utils/cookie';
 
 /** Provides methods to store, retrieve and clear authentication data */

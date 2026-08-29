@@ -1,4 +1,4 @@
-import { IGithubUser } from '@services/api/';
+import { IGithubUser } from '@services/api';
 
 /** @prop for user suggestions that to be display in card
  * Contains conditional parameter showSuggestionActions to show bio

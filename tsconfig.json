@@ -24,15 +24,15 @@
         "baseUrl": "./src",
         "paths": {
             "@assets/*": ["assets/*"],
-            "@constants/*": ["constants/*"],
+            "@constants": ["constants/index"],
             "@theme": ["theme/index"],
             "@features/*": ["features/*"],
-            "@store/*": ["store/*"],
+            "@store": ["store/index"],
             "@hooks/*": ["hooks/*"],
             "@components/*": ["components/*"],
             "@services/*": ["services/*"],
             "@layouts/*": ["layouts/*"],
-            "@routes/*": ["routes/*"],
+            "@routes": ["routes/index"],
             "@utils/*": ["utils/*"]
         }
     },
