@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { skipToken } from '@reduxjs/toolkit/query';
 
 import { useParams } from 'react-router-dom';
 
@@ -8,9 +9,9 @@ import { Loader } from '@components/Loader';
 import { ProfileBio } from '@features/profile/components/ProfileBio';
 import { ProfileHeader } from '@features/profile/components/ProfileHeader';
 import { ProfileLinks } from '@features/profile/components/ProfileLinks';
-import { useAppDispatch } from '@hooks/redux';
-import { useCheckFollowingQuery, useGetUserQuery } from '@services/api/';
-import { authStorage } from '@services/auth/storage';
+import { useAuth } from '@hooks/useAuth';
+import { useCheckFollowingQuery, useGetUserQuery } from '@services/api';
+import { useAppDispatch } from '@store';
 
 import { setFollowers, setIsFollowing } from './profile.slice';
 import {
@@ -25,27 +26,26 @@ export const Profile = () => {
     const { username } = useParams<{ username: string }>();
 
     const dispatch = useAppDispatch();
+    const { user: authenticatedUser, isAuthenticated } = useAuth();
 
-    const loggedInUser = authStorage.getUser();
-
+    /** Checks whether the logged-in user is viewing their own profile. */
     const isOwnProfile =
-        loggedInUser?.username?.toLowerCase() === username?.toLowerCase();
+        authenticatedUser?.username?.toLowerCase() === username?.toLowerCase();
 
+    /** Determines whether the follow status should be checked. */
     const shouldCheckFollowing =
-        Boolean(loggedInUser) && Boolean(username) && !isOwnProfile;
+        isAuthenticated && Boolean(username) && !isOwnProfile;
 
     const {
         data: user,
         isLoading,
         isFetching,
         isError,
-    } = useGetUserQuery(username ?? '', {
-        skip: !username,
-    });
+    } = useGetUserQuery(username ?? skipToken);
 
-    const { data: isFollowing } = useCheckFollowingQuery(username ?? '', {
-        skip: !shouldCheckFollowing,
-    });
+    const { data: isFollowing } = useCheckFollowingQuery(
+        shouldCheckFollowing && username ? username : skipToken,
+    );
 
     /**
      * Sets followers count received from GitHub.
@@ -66,7 +66,7 @@ export const Profile = () => {
     }, [dispatch, isFollowing]);
 
     /**
-     * Reset follow state when changing profiles.
+     * Resets follow state when viewing own profile or when logged out.
      */
     useEffect(() => {
         if (!shouldCheckFollowing) {

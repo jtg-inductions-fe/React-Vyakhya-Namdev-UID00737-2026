@@ -1,33 +1,30 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { useParams } from 'react-router-dom';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 
 import { Loader } from '@components/Loader';
 import { UserInfo } from '@components/UserInfoCard';
-import { IGithubUser } from '@services/api/';
-import { useGetFollowersQuery } from '@services/api/';
+import { FOLLOWERS_PER_PAGE } from '@features/profile/profile.constants';
+import { IGithubUser, useGetFollowersQuery } from '@services/api';
 
 import { CardSection, FollowerSection } from './followers.styles';
 
-const FOLLOWERS_PER_PAGE = 30;
-
-/** Displays the followers of a GitHub user. */
 export const Followers = () => {
     const { username } = useParams<{ username: string }>();
-
     const [page, setPage] = useState(1);
     const [allFollowers, setAllFollowers] = useState<IGithubUser[]>([]);
     const [hasMore, setHasMore] = useState(true);
 
-    const loadMoreRef = useRef<HTMLDivElement | null>(null);
+    const observer = useRef<IntersectionObserver | null>(null);
 
     const {
         data: followers = [],
         isLoading,
         isFetching,
         isError,
+        refetch,
     } = useGetFollowersQuery(
         {
             username: username ?? '',
@@ -35,67 +32,74 @@ export const Followers = () => {
             perPage: FOLLOWERS_PER_PAGE,
         },
         {
-            skip: !username || !hasMore,
+            skip: !username,
         },
     );
 
-    /** Resets followers when a different user's profile is opened */
+    /**
+     * Resetting pagination when another user's followers page is opened.
+     */
     useEffect(() => {
         setPage(1);
         setAllFollowers([]);
         setHasMore(true);
     }, [username]);
 
-    /** Adds newly fetched followers to the existing list */
+    /**
+     * Adding newly fetched followers to existing list.
+     */
     useEffect(() => {
-        if (!followers.length) {
-            return;
-        }
+        if (isFetching) return;
 
-        setAllFollowers((previousFollowers) => [
-            ...previousFollowers,
-            ...followers,
-        ]);
+        setAllFollowers((prevFollowers) => {
+            if (page === 1) return followers;
+
+            return [...prevFollowers, ...followers];
+        });
 
         if (followers.length < FOLLOWERS_PER_PAGE) {
             setHasMore(false);
         }
-    }, [followers]);
+    }, [followers, page, isFetching]);
 
-    /** Detects when the user reaches the bottom of the list */
-    useEffect(() => {
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                if (entry.isIntersecting && !isFetching && hasMore) {
-                    setPage((previousPage) => previousPage + 1);
-                }
-            },
-            {
-                threshold: 0.1,
-            },
-        );
+    /**
+     * Observes the last follower and loads the next page.
+     */
+    const lastFollowerRef = useCallback(
+        (node: HTMLDivElement | null) => {
+            if (isFetching || !hasMore || isError) return;
 
-        const currentLoadMore = loadMoreRef.current;
-
-        if (currentLoadMore) {
-            observer.observe(currentLoadMore);
-        }
-
-        return () => {
-            if (currentLoadMore) {
-                observer.unobserve(currentLoadMore);
+            if (observer.current) {
+                observer.current.disconnect();
             }
-        };
-    }, [hasMore, isFetching]);
+
+            observer.current = new IntersectionObserver(([entry]) => {
+                if (entry.isIntersecting) {
+                    observer.current?.disconnect();
+
+                    setPage((prevPage) => prevPage + 1);
+                }
+            });
+
+            if (node) {
+                observer.current.observe(node);
+            }
+        },
+        [isFetching, hasMore, isError],
+    );
 
     if (isLoading && page === 1) {
         return <Loader />;
     }
 
-    if (isError) {
+    /**
+     * Show full error only when no followers were loaded.
+     */
+    if (isError && allFollowers.length === 0) {
         return (
             <Box>
                 <Typography>Unable to load followers!</Typography>
+                <Button onClick={() => void refetch()}>Retry</Button>
             </Box>
         );
     }
@@ -112,29 +116,40 @@ export const Followers = () => {
             </Typography>
 
             <CardSection>
-                {allFollowers.length === 0 ? (
+                {allFollowers.length === 0 && !isFetching ? (
                     <Typography color="text.secondary">
                         No followers found!
                     </Typography>
                 ) : (
                     <Box display="flex" flexDirection="column" gap={3}>
-                        {allFollowers.map((user) => (
-                            <Box key={user.username}>
-                                <UserInfo user={user} showFollowAction />
-                            </Box>
-                        ))}
+                        {allFollowers.map((user, index) => {
+                            const isLastFollower =
+                                index === allFollowers.length - 1;
 
-                        {/* Element observed for infinite scrolling */}
-                        {hasMore && (
-                            <Box
-                                ref={loadMoreRef}
-                                minHeight="20px"
-                                display="flex"
-                                justifyContent="center"
-                            >
-                                {isFetching && <Loader />}
+                            return (
+                                <Box
+                                    key={user.username}
+                                    ref={
+                                        isLastFollower ? lastFollowerRef : null
+                                    }
+                                >
+                                    <UserInfo user={user} showFollowAction />
+                                </Box>
+                            );
+                        })}
+
+                        {isError && allFollowers.length > 0 && (
+                            <Box>
+                                <Typography>
+                                    Unable to load more followers!
+                                </Typography>
+                                <Button onClick={() => void refetch()}>
+                                    Retry
+                                </Button>
                             </Box>
                         )}
+
+                        {isFetching && <Loader />}
                     </Box>
                 )}
             </CardSection>

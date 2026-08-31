@@ -10,7 +10,7 @@ import { Box, Divider, Typography } from '@mui/material';
 
 import { followUser } from '@features/profile/profile.actions';
 import { useAuth } from '@hooks/useAuth';
-import { useAppDispatch, useAppSelector } from '@hooks/redux';
+import { useAppDispatch, useAppSelector } from '@store';
 
 import {
     ProfileActionButton,
@@ -87,9 +87,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                     >
                         <LocationOnOutlined fontSize="small" />
 
-                        <Typography variant="body2">
-                            {user.location}
-                        </Typography>
+                        <Typography variant="body2">{user.location}</Typography>
                     </Box>
                 )}
 
