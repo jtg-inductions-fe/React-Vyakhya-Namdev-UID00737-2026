@@ -6,14 +6,14 @@ export const COLORS = {
     TEXT: {
         PRIMARY: '#24292F',
         SECONDARY: '#57606A',
-        TERTIARY: '#0f3867',
-        BUTTON: '#0a3616',
+        TERTIARY: '#0F3867',
+        BUTTON: '#0A3616',
     },
     BACKGROUND: {
         DEFAULT: '#FAFAFA',
         CARD: '#FFFFFF',
-        BUTTON_PRIMARY: '#87c599',
-        BUTTON_SECONDARY: '#849fbf',
+        BUTTON_PRIMARY: '#87C599',
+        BUTTON_SECONDARY: '#849FBF',
     },
     GREY: {
         BORDER: '#949499',
@@ -25,10 +25,10 @@ export const COLORS = {
         WARNING: '#9A6700',
     },
     INTERACTION: {
-        HOVER: '#eff2f4',
+        HOVER: '#EFF2F4',
         HOVER_DARK: '#45494E',
-        HOVER_BUTTON: '#4daa68',
-        HOVER_FOLLOW_BUTTON: '#5c81aa',
+        HOVER_BUTTON: '#4DAA68',
+        HOVER_FOLLOW_BUTTON: '#5C81AA',
         ACTIVE: '#EAEEF2',
         FOCUS: '#57606A',
         DISABLED: '#8C959F',
