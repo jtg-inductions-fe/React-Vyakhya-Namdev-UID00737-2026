@@ -24,14 +24,16 @@
         "baseUrl": "./src",
         "paths": {
             "@assets/*": ["assets/*"],
-            "@constant": ["constant/index"],
+            "@constants": ["constants/index"],
             "@theme": ["theme/index"],
             "@features/*": ["features/*"],
-            "@store/*": ["store/*"],
+            "@store": ["store/index"],
             "@hooks/*": ["hooks/*"],
             "@components/*": ["components/*"],
             "@services/*": ["services/*"],
-            "@layouts/*": ["layouts/*"]
+            "@layouts/*": ["layouts/*"],
+            "@routes": ["routes/index"],
+            "@utils/*": ["utils/*"]
         }
     },
     "include": ["src", "vite.config.ts"]

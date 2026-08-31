@@ -1,18 +1,20 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-import { IGithubSearchApiResponse, IGithubUserSearchResult } from './api.types';
-import { IGithubUserSearchResponseMap } from './apiMapper';
+import {
+    IGithubSearchApiResponse,
+    IGithubUser,
+    IGithubUserApiResponse,
+    IGithubUserSearchResult,
+} from './api.types';
+import { IGithubUserMap, IGithubUserSearchResponseMap } from './apiMapper';
+import { baseQuery } from './baseQuery';
 
 /**
  * GitHub API service configured with RTK Query.
  */
 export const githubApi = createApi({
     reducerPath: 'githubApi',
-
-    baseQuery: fetchBaseQuery({
-        baseUrl: import.meta.env.VITE_GITHUB_USER_API_URL,
-    }),
-
+    baseQuery,
     endpoints: (builder) => ({
         /**
          * Searches GitHub users by the provided search query.
@@ -39,10 +41,33 @@ export const githubApi = createApi({
             transformResponse: (response: IGithubSearchApiResponse) =>
                 IGithubUserSearchResponseMap(response),
         }),
+
+        /**
+         * Fetches the authenticated GitHub user information
+         * using the provided Personal Access Token.
+         */
+        getAuthenticatedUser: builder.query<IGithubUser, string>({
+            query: (token) => ({
+                url: '/user',
+                method: 'GET',
+                headers: {
+                    Accept: 'application/vnd.github+json',
+                    Authorization: `Bearer ${token}`,
+                    'X-GitHub-Api-Version': '2026-03-10',
+                },
+            }),
+
+            transformResponse: (response: IGithubUserApiResponse) =>
+                IGithubUserMap(response),
+        }),
     }),
 });
 
 /**
  * RTK Query hook used by components to search GitHub users.
  */
-export const { useSearchUsersQuery } = githubApi;
+export const {
+    useSearchUsersQuery,
+    useGetAuthenticatedUserQuery,
+    useLazyGetAuthenticatedUserQuery,
+} = githubApi;

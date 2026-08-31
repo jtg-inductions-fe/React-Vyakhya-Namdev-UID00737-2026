@@ -1,4 +1,9 @@
-export { useSearchUsersQuery } from './api';
+export {
+    githubApi,
+    useSearchUsersQuery,
+    useGetAuthenticatedUserQuery,
+    useLazyGetAuthenticatedUserQuery,
+} from './api';
 export type {
     IGithubSearchApiResponse,
     IGithubUser,

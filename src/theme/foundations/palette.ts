@@ -6,6 +6,7 @@ import { COLORS, SHADOWS } from '../../constants';
 export const palette: PaletteOptions & {
     customShadows: {
         header: typeof SHADOWS.HEADER;
+        form: typeof SHADOWS.FORM;
     };
 } = {
     text: {
@@ -38,5 +39,6 @@ export const palette: PaletteOptions & {
     },
     customShadows: {
         header: SHADOWS.HEADER,
+        form: SHADOWS.FORM,
     },
 };

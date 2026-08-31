@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { useSearchUsersQuery } from 'services/api';
-import { IGithubUser } from 'services/api';
 
 import { SearchBox } from '@components/SearchBox';
 import { UserInfo } from '@components/UserInfoCard';
@@ -11,6 +9,8 @@ import {
     MAX_SUGGESTIONS,
     MIN_QUERY_LENGTH,
 } from '@features/user-search/';
+import { useSearchUsersQuery } from '@services/api';
+import { IGithubUser } from '@services/api';
 /**
  * Handles GitHub user search functionality.
  *

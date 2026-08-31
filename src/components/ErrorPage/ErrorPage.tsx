@@ -7,14 +7,18 @@ import {
 import { Typography } from '@mui/material';
 
 import { ErrorContainer, HomeButton } from './errorPage.styles';
+import { ErrorPageProps } from './errorPage.types';
 import { ERROR_PAGE_CONFIG } from './errorPageConfig';
 
-export const ErrorPage = () => {
+export const ErrorPage = ({
+    statusCode: providedStatusCode,
+}: ErrorPageProps) => {
     const error = useRouteError();
     const navigate = useNavigate();
 
     const isRouteError = isRouteErrorResponse(error);
-    const statusCode = isRouteError ? error.status : 500;
+    const statusCode =
+        providedStatusCode ?? (isRouteError ? error.status : 500);
     const errorConfig = ERROR_PAGE_CONFIG[statusCode] ?? ERROR_PAGE_CONFIG[500];
 
     const returnHomePage = () => {
