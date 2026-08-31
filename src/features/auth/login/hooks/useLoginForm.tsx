@@ -2,10 +2,12 @@ import { ChangeEvent, FormEvent, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import { MIN_USERNAME_LENGTH } from '@constants';
-import { CLASSIC_PAT_REGEX, FINE_GRAINED_PAT_REGEX } from '@constants';
-import { useAuthenticateUserMutation } from '@services/api';
-import { auth } from '@utils/auth';
+import {
+    CLASSIC_PAT_REGEX,
+    FINE_GRAINED_PAT_REGEX,
+    MIN_USERNAME_LENGTH,
+} from '@constants';
+import { useAuth } from '@hooks/useAuth';
 
 import { LoginErrors } from '../types/login.types';
 
@@ -17,13 +19,14 @@ const AUTH_ERROR_MESSAGES: Record<number, string> = {
 
 export const useLoginForm = () => {
     const navigate = useNavigate();
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [errors, setErrors] = useState<LoginErrors>({});
     const [apiError, setApiError] = useState<string>('');
-    const [authenticateUser, { isLoading }] = useAuthenticateUserMutation();
 
-    /** Validates the username and password before login */
+    const { login, isLoading } = useAuth();
+
     const validate = (): boolean => {
         const newErrors: LoginErrors = {};
 
@@ -46,10 +49,10 @@ export const useLoginForm = () => {
         }
 
         setErrors(newErrors);
+
         return Object.keys(newErrors).length === 0;
     };
 
-    /** Updates the username and clears its related errors */
     const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
         setUsername(event.target.value);
 
@@ -59,10 +62,10 @@ export const useLoginForm = () => {
                 username: undefined,
             }));
         }
+
         setApiError('');
     };
 
-    /** Updates the password and clears its related errors */
     const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
         setPassword(event.target.value);
 
@@ -72,37 +75,32 @@ export const useLoginForm = () => {
                 password: undefined,
             }));
         }
+
         setApiError('');
     };
 
-    /** Handles form validation, authentication and redirect after login */
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         setApiError('');
+
         if (!validate()) {
             return;
         }
 
         try {
-            const user = await authenticateUser({
-                username: username.trim(),
-                token: password,
-            }).unwrap();
+            const user = await login(password);
 
-            /** Checks whether the logged-in account matches the entered username */
             if (user.username.toLowerCase() !== username.trim().toLowerCase()) {
                 setApiError('Invalid credentials provided!');
                 return;
             }
 
-            auth.setToken(password);
             void navigate(`/profile/${user.username}`, {
                 state: {
                     message: 'LoggedIn successful!',
                 },
             });
         } catch (error) {
-            /** Handles authentication errors returned by the API */
             if (
                 typeof error === 'object' &&
                 error !== null &&
@@ -126,7 +124,6 @@ export const useLoginForm = () => {
                 return;
             }
 
-            /** Handles unexpected errors during login */
             setApiError('Unable to login, Please try again!');
         }
     };

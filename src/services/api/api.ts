@@ -43,38 +43,17 @@ export const githubApi = createApi({
         }),
 
         /**
-         * Authenticate Github user using PAT
+         * Fetches the authenticated GitHub user information
+         * using the provided Personal Access Token.
          */
-        authenticateUser: builder.mutation<
-            IGithubUser,
-            {
-                username: string;
-                token: string;
-            }
-        >({
-            query: ({ token }) => ({
+        getAuthenticatedUser: builder.query<IGithubUser, string>({
+            query: (token) => ({
                 url: '/user',
                 method: 'GET',
                 headers: {
                     Accept: 'application/vnd.github+json',
                     Authorization: `Bearer ${token}`,
-                    'X-Github-Api-Version': '2026-03-10',
-                },
-            }),
-
-            transformResponse: (response: IGithubUserApiResponse) =>
-                IGithubUserMap(response),
-        }),
-        /**
-         * Fetches the latest authenticated user information.
-         */
-        getAuthenticatedUser: builder.query<IGithubUser, string>({
-            query: (token) => ({
-                url: '/user',
-                headers: {
-                    Accept: 'application/vnd.github+json',
-                    Authorization: `Bearer ${token}`,
-                    'X-Github-Api-Version': '2026-03-10',
+                    'X-GitHub-Api-Version': '2026-03-10',
                 },
             }),
 
@@ -89,6 +68,6 @@ export const githubApi = createApi({
  */
 export const {
     useSearchUsersQuery,
-    useAuthenticateUserMutation,
     useGetAuthenticatedUserQuery,
+    useLazyGetAuthenticatedUserQuery,
 } = githubApi;

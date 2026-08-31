@@ -1,8 +1,8 @@
 export {
     githubApi,
     useSearchUsersQuery,
-    useAuthenticateUserMutation,
     useGetAuthenticatedUserQuery,
+    useLazyGetAuthenticatedUserQuery,
 } from './api';
 export type {
     IGithubSearchApiResponse,

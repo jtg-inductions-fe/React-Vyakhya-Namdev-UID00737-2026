@@ -1,12 +1,14 @@
 import { fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-import { auth } from '@utils/auth';
+import { AUTH_TOKEN_KEY } from '@constants';
+import { getCookie } from '@utils/cookie';
 
 /** Configures the base API request with authentication and GitHub headers */
 export const baseQuery = fetchBaseQuery({
     baseUrl: import.meta.env.VITE_GITHUB_USER_API_URL,
+
     prepareHeaders: (headers) => {
-        const token = auth.getToken();
+        const token = getCookie(AUTH_TOKEN_KEY);
 
         if (token && !headers.has('Authorization')) {
             headers.set('Authorization', `Bearer ${token}`);
@@ -14,6 +16,7 @@ export const baseQuery = fetchBaseQuery({
 
         headers.set('Accept', 'application/vnd.github+json');
         headers.set('X-GitHub-Api-Version', '2026-03-10');
+
         return headers;
     },
 });
