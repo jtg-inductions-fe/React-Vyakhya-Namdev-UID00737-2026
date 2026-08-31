@@ -18,7 +18,9 @@ export const ProfileBio = ({ bio }: IProfileBioProps) => (
             </Typography>
         ) : (
             /** Shows a fallback message when the user has no bio. */
-            <StyledTypography>No Bio Available!</StyledTypography>
+            <StyledTypography variant="body1" color="text.secondary">
+                No Bio Available!
+            </StyledTypography>
         )}
     </Box>
 );

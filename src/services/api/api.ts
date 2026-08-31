@@ -86,4 +86,5 @@ export const {
     useSearchUsersQuery,
     useGetAuthenticatedUserQuery,
     useLazyGetAuthenticatedUserQuery,
+    useGetUserQuery,
 } = githubApi;

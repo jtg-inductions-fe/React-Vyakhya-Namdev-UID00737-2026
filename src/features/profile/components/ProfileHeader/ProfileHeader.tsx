@@ -8,7 +8,7 @@ import {
 import { Box, Divider, Typography } from '@mui/material';
 
 import type { IProfileHeaderProps } from '@features/profile/types/profile.types';
-import { authStorage } from '@services/auth/storage';
+import { useAuth } from '@hooks/useAuth';
 
 import {
     EditButton,
@@ -21,11 +21,11 @@ import {
 
 /** Displays the main profile information and available actions. */
 export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
-    const loggedInUsername = authStorage.getUser();
+    const { user: authenticatedUser } = useAuth();
 
     /** Checks whether the logged-in user is viewing their own profile. */
     const isOwnProfile =
-        loggedInUsername?.username?.toLowerCase() ===
+        authenticatedUser?.username?.toLowerCase() ===
         user.username?.toLowerCase();
 
     return (

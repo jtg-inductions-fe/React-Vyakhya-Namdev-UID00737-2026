@@ -5,7 +5,7 @@ import { CSSObject } from '@emotion/react';
 // Local Font files
 import InterRegularTTF from '@assets/fonts/inter/inter-regular.ttf';
 import InterRegularWOFF2 from '@assets/fonts/inter/inter-regular.woff2';
-import { FONT_WEIGHT } from '@constants/index';
+import { FONT_WEIGHT } from '@constants';
 
 //Font face declarations
 const fontFaceDeclarations: CSSObject = {

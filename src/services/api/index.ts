@@ -3,6 +3,7 @@ export {
     useSearchUsersQuery,
     useGetAuthenticatedUserQuery,
     useLazyGetAuthenticatedUserQuery,
+    useGetUserQuery,
 } from './api';
 export type {
     IGithubSearchApiResponse,
