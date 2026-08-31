@@ -22,13 +22,14 @@ export const Profile = () => {
     const {
         data: user,
         isLoading,
+        isFetching,
         isError,
     } = useGetUserQuery(username ?? '', {
         skip: !username,
     });
 
     /** Shows a loader while the profile data is being fetched. */
-    if (isLoading) {
+    if (isLoading || isFetching) {
         return (
             <ProfileContainer>
                 <ProfileLoader>

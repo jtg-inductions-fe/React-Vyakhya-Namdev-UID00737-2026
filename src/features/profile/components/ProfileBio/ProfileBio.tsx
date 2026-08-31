@@ -1,9 +1,8 @@
 import { PersonOutline } from '@mui/icons-material';
 import { Box, Typography } from '@mui/material';
 
-import type { IProfileBioProps } from '@features/profile/types/profile.types';
-
 import { StyledTypography } from './profileBio.styles';
+import type { IProfileBioProps } from '../../types/profile.types';
 
 /** Displays the user's bio along with a heading. */
 export const ProfileBio = ({ bio }: IProfileBioProps) => (

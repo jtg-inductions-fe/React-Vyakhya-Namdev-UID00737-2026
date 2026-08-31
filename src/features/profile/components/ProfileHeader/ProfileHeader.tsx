@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import {
     EditOutlined,
     GroupAdd,
@@ -7,7 +9,6 @@ import {
 } from '@mui/icons-material';
 import { Box, Divider, Typography } from '@mui/material';
 
-import type { IProfileHeaderProps } from '@features/profile/types/profile.types';
 import { useAuth } from '@hooks/useAuth';
 
 import {
@@ -18,15 +19,24 @@ import {
     StyledFollowerButton,
     StyledFollowingButton,
 } from './profileHeader.styles';
+import type { IProfileHeaderProps } from '../../types/profile.types';
 
 /** Displays the main profile information and available actions. */
 export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
     const { user: authenticatedUser } = useAuth();
+    const navigate = useNavigate();
 
     /** Checks whether the logged-in user is viewing their own profile. */
     const isOwnProfile =
         authenticatedUser?.username?.toLowerCase() ===
         user.username?.toLowerCase();
+
+    const handleFollowClick = () => {
+        if (!authenticatedUser) {
+            void navigate('/login');
+            return;
+        }
+    };
 
     return (
         <Box display="flex" gap={12} alignItems="center">
@@ -67,7 +77,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                     </StatContent>
                 </Box>
 
-                <Box display="flex" gap={5} mt={20}>
+                <Box display="flex" gap={5} mt={10}>
                     {isOwnProfile ? (
                         <EditButton
                             variant="outlined"
@@ -79,7 +89,10 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                             </Typography>
                         </EditButton>
                     ) : (
-                        <ProfileActionButton variant="contained">
+                        <ProfileActionButton
+                            variant="contained"
+                            onClick={handleFollowClick}
+                        >
                             <PersonAddAlt />
                             <Typography variant="body1">Follow</Typography>
                         </ProfileActionButton>
