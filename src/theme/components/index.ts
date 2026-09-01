@@ -1,6 +1,4 @@
-import type { Components } from '@mui/material/styles';
-
-import { CSSObject } from '@emotion/react';
+import type { Components, CSSObject } from '@mui/material/styles';
 
 // Local Font files
 import InterRegularTTF from '@assets/fonts/inter/inter-regular.ttf';

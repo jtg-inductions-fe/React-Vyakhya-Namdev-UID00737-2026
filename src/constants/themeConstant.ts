@@ -6,13 +6,11 @@ export const COLORS = {
     TEXT: {
         PRIMARY: '#24292F',
         SECONDARY: '#57606A',
-        TERTIARY: '#0F3867',
-        BUTTON: '#0A3616',
+        BUTTON: '#0F3867',
     },
     BACKGROUND: {
         DEFAULT: '#FAFAFA',
         CARD: '#FFFFFF',
-        BUTTON_PRIMARY: '#87C599',
         BUTTON_SECONDARY: '#849FBF',
     },
     GREY: {
@@ -27,8 +25,7 @@ export const COLORS = {
     INTERACTION: {
         HOVER: '#EFF2F4',
         HOVER_DARK: '#45494E',
-        HOVER_BUTTON: '#4DAA68',
-        HOVER_FOLLOW_BUTTON: '#5C81AA',
+        HOVER_BUTTON: '#5C81AA',
         ACTIVE: '#EAEEF2',
         FOCUS: '#57606A',
         DISABLED: '#8C959F',

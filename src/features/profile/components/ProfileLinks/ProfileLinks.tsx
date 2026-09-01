@@ -4,9 +4,8 @@ import LinkOutlinedIcon from '@mui/icons-material/LinkOutlined';
 import OpenInNewOutlinedIcon from '@mui/icons-material/OpenInNewOutlined';
 import { Box, Typography } from '@mui/material';
 
-import type { IProfileLinksProps } from '@features/profile/types/profile.types';
-
 import { LinkItem, LinkValue, StyledTypography } from './profileLinks.styles';
+import type { IProfileLinksProps } from '../../types/profile.types';
 
 /** Displays the user's GitHub, blog, and email details. */
 export const ProfileLinks = ({

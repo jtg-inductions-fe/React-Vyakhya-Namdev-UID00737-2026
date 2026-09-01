@@ -29,37 +29,6 @@ export const ProfileActionButton = styled(Button)(({ theme }) => ({
     },
 }));
 
-/** Styles the followers button using the theme colors. */
-export const StyledFollowerButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.customColors.button_primary,
-    color: theme.palette.customColors.button_text_primary,
-    padding: `0 ${theme.spacing(2)}`,
-    gap: theme.spacing(2),
-    width: theme.typography.pxToRem(120),
-    height: theme.typography.pxToRem(30),
-    textTransform: 'capitalize',
-
-    '&:hover': {
-        backgroundColor: theme.palette.interaction.hover_button,
-    },
-}));
-
-/** Styles the followering button using the theme colors. */
-export const StyledFollowingButton = styled(Button)(({ theme }) => ({
-    backgroundColor: theme.palette.customColors.button_secondary,
-    color: theme.palette.customColors.button_text_secondary,
-    gap: theme.spacing(2),
-    width: theme.typography.pxToRem(120),
-    height: theme.typography.pxToRem(30),
-    padding: `0 ${theme.spacing(2)}`,
-
-    textTransform: 'capitalize',
-
-    '&:hover': {
-        backgroundColor: theme.palette.interaction.hover_follow_button,
-    },
-}));
-
 /** Styles the edit button using the theme colors. */
 export const EditButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(1),
@@ -69,7 +38,7 @@ export const EditButton = styled(Button)(({ theme }) => ({
     textTransform: 'capitalize',
 
     '&:hover': {
-        color: theme.palette.interaction.hover_follow_button,
-        borderColor: theme.palette.interaction.hover_follow_button,
+        color: theme.palette.interaction.hover_button,
+        borderColor: theme.palette.interaction.hover_button,
     },
 }));
