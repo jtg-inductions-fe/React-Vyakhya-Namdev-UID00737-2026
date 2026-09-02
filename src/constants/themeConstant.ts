@@ -6,12 +6,10 @@ export const COLORS = {
     TEXT: {
         PRIMARY: '#24292F',
         SECONDARY: '#57606A',
-        BUTTON: '#0F3867',
     },
     BACKGROUND: {
         DEFAULT: '#FAFAFA',
         CARD: '#FFFFFF',
-        BUTTON_SECONDARY: '#849FBF',
     },
     GREY: {
         BORDER: '#949499',
@@ -25,7 +23,6 @@ export const COLORS = {
     INTERACTION: {
         HOVER: '#EFF2F4',
         HOVER_DARK: '#45494E',
-        HOVER_BUTTON: '#5C81AA',
         ACTIVE: '#EAEEF2',
         FOCUS: '#57606A',
         DISABLED: '#8C959F',
@@ -65,14 +62,4 @@ export const BREAKPOINTS = {
     MD: 1024,
     LG: 1440,
     XL: 1920,
-};
-
-/**
- * Shadows value @constant
- */
-
-export const SHADOWS = {
-    HEADER: '0 2px 8px rgba(0, 0, 0, 0.08)',
-    FORM: '0 4px 20px rgba(0, 0, 0, 0.15)',
-    AVATAR: '0 0 0 4px rgba(150, 138, 138, 0.15)',
 };

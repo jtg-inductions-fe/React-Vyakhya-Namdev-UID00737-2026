@@ -20,7 +20,6 @@ export const HeaderContainer = styled(Box)(({ theme }) => ({
     justifyContent: 'space-between',
     padding: `0 ${theme.spacing(8)}`,
     backgroundColor: theme.palette.background.paper,
-    boxShadow: theme.palette.customShadows.header,
     boxSizing: 'border-box',
 }));
 

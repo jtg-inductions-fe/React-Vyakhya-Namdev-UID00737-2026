@@ -94,7 +94,6 @@ export const SearchBox = <T,>({
         item: T | null,
     ) => {
         if (item) {
-            handleClear();
             onSuggestionSelect?.(item);
         }
     };
