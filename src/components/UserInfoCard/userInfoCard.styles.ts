@@ -8,13 +8,13 @@ export const UserAvatar = styled(Avatar)(({ theme }) => ({
 
 export const StyledButton = styled(Button)(({ theme }) => ({
     gap: theme.spacing(0.5),
-    color: theme.palette.customColors.button_text_secondary,
-    borderColor: theme.palette.customColors.button_text_secondary,
+    color: theme.palette.text.secondary,
+    borderColor: theme.palette.text.secondary,
     width: theme.spacing(25),
     textTransform: 'capitalize',
 
     '&:hover': {
-        color: theme.palette.interaction.hover_follow_button,
-        borderColor: theme.palette.interaction.hover_follow_button,
+        color: theme.palette.text.primary,
+        borderColor: theme.palette.text.primary,
     },
 }));

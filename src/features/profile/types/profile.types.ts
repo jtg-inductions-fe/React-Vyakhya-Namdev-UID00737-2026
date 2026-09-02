@@ -20,6 +20,5 @@ export interface IProfileLinksProps {
 /** Defining Profile state for triggering followers */
 export interface IProfileState {
     followers: number;
-    followStatus: 'idle' | 'loading' | 'success' | 'error';
     isFollowing: boolean;
 }

@@ -8,47 +8,38 @@ import {
 } from '@mui/icons-material';
 import { Box, Divider, Typography } from '@mui/material';
 
-import { followUser } from '@features/profile/profile.actions';
 import { useAuth } from '@hooks/useAuth';
+import { useFollowUserMutation } from '@services/api';
 import { useAppDispatch, useAppSelector } from '@store';
 
 import {
     ProfileActionButton,
     StatContent,
     StyledAvatar,
+    StyledButton,
     StyledLink,
-    StyledButton
 } from './profileHeader.styles';
+import { followUserSuccess } from '../../profile.slice';
 import type { IProfileHeaderProps } from '../../types/profile.types';
 
-/** Displays the main profile information and available actions. */
 export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const { user: authenticatedUser, isAuthenticated } = useAuth();
 
-    const { followers, followStatus, isFollowing } = useAppSelector(
-        (state) => state.profile,
-    );
+    const { followers, isFollowing } = useAppSelector((state) => state.profile);
 
-    /** Checks whether the logged-in user is viewing their own profile. */
+    const [followUser, { isLoading: isFollowLoading }] =
+        useFollowUserMutation();
+
     const isOwnProfile =
         authenticatedUser?.username?.toLowerCase() ===
         user.username?.toLowerCase();
 
-    const handleFollowClick = () => {
-        if (!authenticatedUser) {
-            void navigate('/login');
-            return;
-        }
     const shouldShowEditButton = isAuthenticated && isOwnProfile;
 
-    /** Checks whether the follow API request is in progress. */
-    const isFollowLoading = followStatus === 'loading';
-
-    /** Follows the currently viewed user. */
-    const handleFollow = () => {
+    const handleFollow = async () => {
         if (!isAuthenticated) {
             void navigate('/login');
             return;
@@ -58,12 +49,11 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
             return;
         }
 
-        void dispatch(followUser(user.username));
-    };
+        try {
+            await followUser(user.username).unwrap();
 
-    /** Navigates to the followers list of the current profile. */
-    const handleFollowersClick = () => {
-        void navigate(`/profile/${user.username}/followers`);
+            dispatch(followUserSuccess());
+        } catch {}
     };
 
     return (
@@ -78,13 +68,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                 </Typography>
 
                 {user.location && (
-                    <Box
-                        display="flex"
-                        alignItems="center"
-                        gap={1}
-                        mt={3}
-                        mb={3}
-                    >
+                    <Box display="flex" alignItems="center" gap={1}>
                         <LocationOnOutlined fontSize="small" />
 
                         <Typography variant="body2">{user.location}</Typography>
@@ -94,6 +78,7 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                 <Box display="flex" mt={7} gap={8}>
                     <StatContent>
                         <Typography variant="h4">{user.following}</Typography>
+
                         <StyledLink to={`/profile/${user.username}/following`}>
                             <Typography variant="body1">Following</Typography>
                         </StyledLink>
@@ -102,7 +87,8 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                     <Divider orientation="vertical" flexItem />
 
                     <StatContent>
-                        <Typography variant="h4">{user.followers}</Typography>
+                        <Typography variant="h4">{followers}</Typography>
+
                         <StyledLink to={`/profile/${user.username}/followers`}>
                             <Typography variant="body1">Followers</Typography>
                         </StyledLink>
@@ -120,35 +106,29 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                                 Edit Profile
                             </Typography>
                         </StyledButton>
+                    ) : isFollowing ? (
+                        <StyledButton variant="outlined">
+                            <HowToReg />
+
+                            <Typography variant="body1">Unfollow</Typography>
+                        </StyledButton>
                     ) : (
-                        isAuthenticated &&
-                        (isFollowing ? (
-                            <StyledButton variant="outlined">
-                                <HowToReg />
+                        <ProfileActionButton
+                            variant="contained"
+                            onClick={() => {
+                                void handleFollow();
+                            }}
+                            disabled={isFollowLoading}
+                        >
+                            <PersonAddAlt />
 
-                                <Typography variant="body1">
-                                    Following
-                                </Typography>
-                            </StyledButton>
-                        ) : (
-                            <ProfileActionButton
-                                variant="contained"
-                                onClick={handleFollow}
-                                disabled={isFollowLoading}
-                            >
-                                <PersonAddAlt />
-
-                                <Typography variant="body1">
-                                    {isFollowLoading
-                                        ? 'Unfollow'
-                                        : 'Follow'}
-                                </Typography>
-                            </ProfileActionButton>
-                        ))
+                            <Typography variant="body1">
+                                {isFollowLoading ? 'Following...' : 'Follow'}
+                            </Typography>
+                        </ProfileActionButton>
                     )}
                 </Box>
             </Box>
         </Box>
     );
-};
 };
