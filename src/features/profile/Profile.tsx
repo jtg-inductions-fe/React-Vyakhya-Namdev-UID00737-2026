@@ -36,19 +36,28 @@ export const Profile = () => {
     const shouldCheckFollowing =
         isAuthenticated && Boolean(username) && !isOwnProfile;
 
+    /**
+     * Uses currentData so only the data for the current username is used.
+     * This prevents previous profile data from being used while a new
+     * username request is pending.
+     */
     const {
-        data: user,
+        currentData: user,
         isLoading,
         isFetching,
         isError,
     } = useGetUserQuery(username ?? skipToken);
 
-    const { data: isFollowing } = useCheckFollowingQuery(
+    /**
+     * Uses currentData to prevent dispatching the previous user's
+     * follow status when the username changes.
+     */
+    const { currentData: isFollowing } = useCheckFollowingQuery(
         shouldCheckFollowing && username ? username : skipToken,
     );
 
     /**
-     * Sets followers count received from GitHub.
+     * Sets followers count received from GitHub for the current profile.
      */
     useEffect(() => {
         if (user) {
@@ -57,7 +66,7 @@ export const Profile = () => {
     }, [dispatch, user?.username, user?.followers]);
 
     /**
-     * Sets follow status received from GitHub.
+     * Sets follow status received from GitHub for the current profile.
      */
     useEffect(() => {
         if (typeof isFollowing === 'boolean') {
