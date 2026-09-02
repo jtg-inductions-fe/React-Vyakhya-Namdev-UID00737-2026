@@ -4,7 +4,6 @@ export {
     SCALING_FACTOR,
     FONT_WEIGHT,
     BREAKPOINTS,
-    SHADOWS,
 } from './themeConstant';
 
 export {

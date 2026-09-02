@@ -1,14 +1,9 @@
 import type { PaletteOptions } from '@mui/material/styles';
 
-import { COLORS, SHADOWS } from '../../constants';
+import { COLORS } from '../../constants';
 
 /* Custom Palette */
-export const palette: PaletteOptions & {
-    customShadows: {
-        header: typeof SHADOWS.HEADER;
-        form: typeof SHADOWS.FORM;
-    };
-} = {
+export const palette: PaletteOptions = {
     text: {
         primary: COLORS.TEXT.PRIMARY,
         secondary: COLORS.TEXT.SECONDARY,
@@ -36,9 +31,5 @@ export const palette: PaletteOptions & {
         active: COLORS.INTERACTION.ACTIVE,
         focus: COLORS.INTERACTION.FOCUS,
         disabled: COLORS.INTERACTION.DISABLED,
-    },
-    customShadows: {
-        header: SHADOWS.HEADER,
-        form: SHADOWS.FORM,
     },
 };

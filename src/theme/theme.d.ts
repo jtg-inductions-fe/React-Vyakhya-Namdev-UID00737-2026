@@ -13,11 +13,6 @@ declare module '@mui/material/styles' {
             focus: string;
             disabled: string;
         };
-
-        customShadows: {
-            header: string;
-            form: string;
-        };
     }
 
     interface PaletteOptions {
@@ -27,10 +22,6 @@ declare module '@mui/material/styles' {
             active?: string;
             focus?: string;
             disabled?: string;
-        };
-
-        customShadows?: {
-            header?: string;
         };
     }
 }

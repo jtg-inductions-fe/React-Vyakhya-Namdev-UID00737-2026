@@ -21,7 +21,7 @@ export const COLORS = {
         WARNING: '#9A6700',
     },
     INTERACTION: {
-        HOVER: '#eff2f4',
+        HOVER: '#EFF2F4',
         HOVER_DARK: '#45494E',
         ACTIVE: '#EAEEF2',
         FOCUS: '#57606A',
@@ -62,13 +62,4 @@ export const BREAKPOINTS = {
     MD: 1024,
     LG: 1440,
     XL: 1920,
-};
-
-/**
- * Shadows value @constant
- */
-
-export const SHADOWS = {
-    HEADER: '0 2px 8px rgba(0, 0, 0, 0.08)',
-    FORM: '0 4px 20px rgba(0, 0, 0, 0.15)',
 };

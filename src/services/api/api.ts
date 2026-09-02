@@ -60,6 +60,22 @@ export const githubApi = createApi({
             transformResponse: (response: IGithubUserApiResponse) =>
                 IGithubUserMap(response),
         }),
+
+        /** Fetches the GitHub profile details for the given username. */
+        getUser: builder.query<IGithubUser, string>({
+            query: (username) => ({
+                url: `/users/${username}`,
+                method: 'GET',
+                headers: {
+                    Accept: 'application/vnd.github+json',
+                    'X-GitHub-Api-Version': '2026-03-10',
+                },
+            }),
+
+            transformResponse: (
+                response: IGithubUserApiResponse,
+            ): IGithubUser => IGithubUserMap(response),
+        }),
     }),
 });
 
@@ -70,4 +86,5 @@ export const {
     useSearchUsersQuery,
     useGetAuthenticatedUserQuery,
     useLazyGetAuthenticatedUserQuery,
+    useGetUserQuery,
 } = githubApi;
