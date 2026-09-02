@@ -1,11 +1,11 @@
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
     EditOutlined,
     LocationOnOutlined,
     PersonAddAlt,
 } from '@mui/icons-material';
-import { Box, Divider, Link, Typography } from '@mui/material';
+import { Box, Divider, Typography } from '@mui/material';
 
 import { useAuth } from '@hooks/useAuth';
 
@@ -14,6 +14,7 @@ import {
     ProfileActionButton,
     StatContent,
     StyledAvatar,
+    StyledLink,
 } from './profileHeader.styles';
 import type { IProfileHeaderProps } from '../../types/profile.types';
 
@@ -58,26 +59,16 @@ export const ProfileHeader = ({ user }: IProfileHeaderProps) => {
                 <Box display="flex" mt={7} gap={8}>
                     <StatContent>
                         <Typography variant="h4">{user.following}</Typography>
-                        <Link
-                            component={RouterLink}
-                            to={`/profile/${user.username}/following`}
-                            underline="none"
-                            color="text.secondary"
-                        >
+                        <StyledLink to={`/profile/${user.username}/following`}>
                             <Typography variant="body1">Following</Typography>
-                        </Link>
+                        </StyledLink>
                     </StatContent>
                     <Divider orientation="vertical" flexItem />
                     <StatContent>
                         <Typography variant="h4">{user.followers}</Typography>
-                        <Link
-                            component={RouterLink}
-                            to={`/profile/${user.username}/followers`}
-                            underline="none"
-                            color="text.secondary"
-                        >
+                        <StyledLink to={`/profile/${user.username}/followers`}>
                             <Typography variant="body1">Followers</Typography>
-                        </Link>
+                        </StyledLink>
                     </StatContent>
                 </Box>
 

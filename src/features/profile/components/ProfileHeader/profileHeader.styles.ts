@@ -1,3 +1,5 @@
+import { Link as RouterLink } from 'react-router-dom';
+
 import { Avatar, Box, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
@@ -36,5 +38,16 @@ export const EditButton = styled(Button)(({ theme }) => ({
     '&:hover': {
         color: theme.palette.text.primary,
         borderColor: theme.palette.text.primary,
+    },
+}));
+
+/** Styling the following/followers link */
+export const StyledLink = styled(RouterLink)(({ theme }) => ({
+    textDecoration: 'none',
+    color: theme.palette.text.secondary,
+
+    '&:hover': {
+        color: theme.palette.text.primary,
+        textDecoration: 'underline',
     },
 }));
