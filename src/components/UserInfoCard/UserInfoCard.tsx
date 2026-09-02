@@ -1,7 +1,8 @@
+import { HowToReg, PersonAddAlt } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton, Typography } from '@mui/material';
 
-import { UserAvatar } from './userInfoCard.styles';
+import { StyledButton, UserAvatar } from './userInfoCard.styles';
 import { IUserSuggestion } from './userInfoCard.types';
 
 /**
@@ -12,6 +13,10 @@ import { IUserSuggestion } from './userInfoCard.types';
 export const UserInfo = ({
     user,
     showSuggestionActions = false,
+    showFollowAction = false,
+    onFollow,
+    isFollowing = false,
+    isFollowingLoading = false,
 }: IUserSuggestion) => (
     <Box
         display="flex"
@@ -40,6 +45,19 @@ export const UserInfo = ({
             <IconButton size="small" aria-label={`Remove ${user.username}`}>
                 <CloseIcon fontSize="small" />
             </IconButton>
+        )}
+
+        {showFollowAction && (
+            <StyledButton
+                variant="outlined"
+                onClick={onFollow}
+                disabled={isFollowingLoading}
+                startIcon={isFollowing ? <HowToReg /> : <PersonAddAlt />}
+            >
+                <Typography>
+                    {isFollowingLoading ? 'Following...' : 'Follow'}
+                </Typography>
+            </StyledButton>
         )}
     </Box>
 );

@@ -44,7 +44,7 @@ export const AuthButton = styled(Button)(({ theme }) => ({
     },
 
     [`&.${buttonClasses.text}`]: {
-        backgroundColor: 'transparent',
+        backgroundColor: theme.palette.interaction.hover,
         color: theme.palette.text.primary,
 
         '&:hover': {

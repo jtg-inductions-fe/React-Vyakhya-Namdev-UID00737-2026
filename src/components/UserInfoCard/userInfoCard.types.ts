@@ -7,4 +7,8 @@ import { IGithubUser } from '@services/api';
 export interface IUserSuggestion {
     user: IGithubUser;
     showSuggestionActions?: boolean;
+    showFollowAction?: boolean;
+    onFollow?: () => void;
+    isFollowing?: boolean;
+    isFollowingLoading?: boolean;
 }
