@@ -22,7 +22,6 @@ export const LandingPage = () => (
                 component="img"
                 src={heroImage}
                 alt="Discover GitHub developers"
-                width="100vw"
                 height="100%"
                 display="block"
             />
