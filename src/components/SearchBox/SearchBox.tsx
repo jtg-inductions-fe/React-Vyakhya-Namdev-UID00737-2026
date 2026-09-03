@@ -30,6 +30,7 @@ export const SearchBox = <T,>({
     suggestions = [],
     loading = false,
     error = false,
+    searchCompleted = false,
     onSearch,
     onSuggestionSelect,
     getOptionLabel,
@@ -116,7 +117,10 @@ export const SearchBox = <T,>({
                 onInputChange={handleInputChange}
                 onChange={handleSuggestionSelect}
                 noOptionsText={
-                    inputValue.trim().length >= MIN_QUERY_LENGTH
+                    searchCompleted &&
+                    !loading &&
+                    inputValue.trim().length >= MIN_QUERY_LENGTH &&
+                    suggestions.length === 0
                         ? 'No Result Found!'
                         : ''
                 }

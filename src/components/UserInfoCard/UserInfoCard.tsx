@@ -2,7 +2,7 @@ import { HowToReg, PersonAddAlt } from '@mui/icons-material';
 import CloseIcon from '@mui/icons-material/Close';
 import { Box, IconButton, Typography } from '@mui/material';
 
-import { StyledButton, UserAvatar } from './userInfoCard.styles';
+import { StyledButton, StyledLink, UserAvatar } from './userInfoCard.styles';
 import { IUserSuggestion } from './userInfoCard.types';
 
 /**
@@ -27,7 +27,9 @@ export const UserInfo = ({
         <Box display="flex" alignItems="center">
             <UserAvatar src={user.avatarUrl} alt={user.username} />
             <Box>
-                <Typography variant="subtitle1">{user.username}</Typography>
+                <StyledLink href={`/profile/${user.username}`}>
+                    <Typography variant="subtitle1">{user.username}</Typography>
+                </StyledLink>
 
                 {showSuggestionActions && user.bio && (
                     <Typography

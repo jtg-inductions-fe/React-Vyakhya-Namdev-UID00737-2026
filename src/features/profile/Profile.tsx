@@ -3,7 +3,7 @@ import { skipToken } from '@reduxjs/toolkit/query';
 
 import { useParams } from 'react-router-dom';
 
-import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
 
 import { Loader } from '@components/Loader';
 import { ProfileBio } from '@features/profile/components/ProfileBio';
@@ -94,7 +94,15 @@ export const Profile = () => {
     }
 
     if (isError || !user) {
-        return <Box>Unable to load profile!</Box>;
+        return (
+            <ProfileContainer>
+                <ProfileWrapper>
+                    <ProfileSection>
+                        <Typography>Unable to load profile!</Typography>
+                    </ProfileSection>
+                </ProfileWrapper>
+            </ProfileContainer>
+        );
     }
 
     return (
