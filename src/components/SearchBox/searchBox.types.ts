@@ -10,6 +10,7 @@ export interface ISearchBoxProps<T> {
     suggestions?: T[];
     loading?: boolean;
     error?: boolean;
+    searchCompleted?: boolean;
     onSearch: (query: string) => void;
     onSuggestionSelect?: (item: T) => void;
     getOptionLabel: (option: T) => string;

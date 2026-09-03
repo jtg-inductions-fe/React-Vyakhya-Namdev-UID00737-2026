@@ -69,6 +69,7 @@ export const UserSearch = () => {
             suggestions={suggestions}
             loading={isFetching}
             error={isError}
+            searchCompleted={isCurrentQuery && !isFetching && !isError}
             onSuggestionSelect={handleSuggestionSelect}
             getOptionLabel={(user: IGithubUser) => user.username}
             renderOption={(user: IGithubUser) => <UserInfo user={user} />}

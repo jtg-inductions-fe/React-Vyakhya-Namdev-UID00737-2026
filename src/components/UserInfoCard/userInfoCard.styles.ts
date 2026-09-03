@@ -1,4 +1,4 @@
-import { Avatar, Button, styled } from '@mui/material';
+import { Avatar, Button, Link, styled } from '@mui/material';
 
 export const UserAvatar = styled(Avatar)(({ theme }) => ({
     width: theme.typography.pxToRem(35),
@@ -16,5 +16,14 @@ export const StyledButton = styled(Button)(({ theme }) => ({
     '&:hover': {
         color: theme.palette.text.primary,
         borderColor: theme.palette.text.primary,
+    },
+}));
+
+export const StyledLink = styled(Link)(({ theme }) => ({
+    textDecoration: 'none',
+    color: theme.palette.text.primary,
+
+    '&:hover': {
+        textDecoration: 'underline',
     },
 }));
